@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import MasSnackbar from "pages/Snackbar";
+import MallSnackbar from "components/ui/mall-snackbar";
 
 export default function AuthLayout() {
   return (
     <>
       <Outlet />
-      <MasSnackbar />
+      <MallSnackbar />
     </>
   );
 }

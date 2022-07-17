@@ -1,477 +1,233 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Logo from "./Logo";
-import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Navs from "./Navs";
-import styled from "@emotion/styled";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { Theme, useTheme } from "@mui/material/styles";
-import CloseIcon from "@mui/icons-material/Close";
-import Stack from "@mui/material/Stack";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { checkTokenCookie } from "client/grbc";
-import Grid from "@mui/material/Grid";
-import Badge from "@mui/material/Badge";
 import Typography from "@mui/material/Typography";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-import ProfileMenu from "./ProfileMenu";
-import { getUserData, changeUser } from "redux/userSlice";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import ListItemButton from "@mui/material/ListItemButton";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import { RELATED_CUSTKEY } from "proto/auth/gen/GoAuth_pb";
-import Avatar from "@mui/material/Avatar";
-import { PersonAddOutlined } from "@mui/icons-material";
-import Radio from "@mui/material/Radio";
-import { logout } from "redux/loginSlice";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import { showNotification } from "app/store";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
+import Logo from "assets/logo.svg";
+export default function Header() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+    React.useState<null | HTMLElement>(null);
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
-  const [isToken, setIsToken] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { user, selectedUser } = useAppSelector((state) => state.user);
-  const [openList, setOpenList] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const location = useLocation();
-  let navigate = useNavigate();
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleChange = (e?: any, acc?: RELATED_CUSTKEY.AsObject) => {
-    showNotification(`تم التبديل الى :  ${acc.custname}`);
-    dispatch(changeUser({ selectedUser: acc }));
-    setOpen(false);
-  };
-  const handelSignOut = () => {
-    dispatch(logout());
-    navigate("/", { replace: true });
-    window.location.reload();
-  };
-  const openProfileMenu = Boolean(anchorEl);
-  const handelOpenProfileMenu = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
     setAnchorEl(null);
+    handleMobileMenuClose();
   };
-  const handelOpenList = () => {
-    setOpenList(!openList);
-  };
-  useEffect(() => {
-    if (matches) {
-      setOpen(false);
-    }
-  }, [matches]);
-  useEffect(() => {
-    let isLogged = checkTokenCookie();
-    if (user) {
-      setIsToken(isLogged);
-    }
-  }, [user]);
-  useEffect(() => {
-    let token = checkTokenCookie();
-    if (token) {
-      if (Object.keys(user)?.length < 1) {
-        dispatch(getUserData());
-      }
-    }
-  }, [dispatch, user]);
-  React.useEffect(() => {
-    if (user?.relatedCustkeyList && selectedUser === undefined) {
-      dispatch(changeUser({ selectedUser: user?.relatedCustkeyList[0] }));
-    }
-  }, [dispatch, user?.relatedCustkeyList, selectedUser]);
-  return (
-    <>
-      <AppBar
-        position="static"
-        color="inherit"
-        elevation={0}
-        sx={{
-          boxShadow: "shadows.z1",
-          borderBottom: "1px solid #eee",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters>
-            <Logo />
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: {
-                  xs: "none",
-                  md: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                },
-                textAlign: "left",
-              }}
-            >
-              <Navs showMyApps={isToken} />
-              <Box>
-                {!isToken ? (
-                  <Link to="/login">
-                    <Button
-                      variant="contained"
-                      disableFocusRipple
-                      sx={{
-                        border: "2px solid",
-                        borderColor: "primary.main",
-                        borderRadius: "50px",
-                        "&:hover": {
-                          border: "2px solid",
-                          borderColor: "primary.main",
-                        },
-                      }}
-                    >
-                      تسجيل الدخول
-                    </Button>
-                  </Link>
-                ) : (
-                  <Grid container wrap="nowrap" alignItems="center" spacing={3}>
-                    <Grid item>
-                      <Box
-                      // onClick={handelOpenNotifiMenu}
-                      >
-                        <Badge color="primary" badgeContent={3} showZero>
-                          <NotificationsNoneOutlinedIcon
-                            // className={classes.contactUs_icon}
-                            color="inherit"
-                          />
-                        </Badge>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <IconButton
-                        disableRipple
-                        disableFocusRipple
-                        disableTouchRipple
-                        onClick={handelOpenProfileMenu}
-                      >
-                        <Typography
-                          color="primary"
-                          variant="subtitle1"
-                          // className={classes.user_name}
-                          component="span"
-                          fontWeight={"bold"}
-                          textAlign="left"
-                        >
-                          {user?.firstName} {user?.secondName}
-                          <Typography
-                            component="div"
-                            variant="caption"
-                            color="textSecondary"
-                            textAlign="left"
-                          >
-                            رقم الحساب : {selectedUser?.custkey}
-                          </Typography>
-                        </Typography>
-                        <ExpandMoreOutlinedIcon
-                          color="action"
-                          sx={{
-                            marginX: 1.5,
-                            backgroundColor: "#eee",
-                            borderRadius: 33,
-                          }}
-                        />
-                      </IconButton>
-                    </Grid>
-                  </Grid>
-                )}
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none" },
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={() => setOpen(true)}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </Container>
-        <DrawerHeader
-          anchor={"right"}
-          open={open}
-          onClose={() => setOpen(false)}
-          variant="persistent"
-          sx={{
-            display: { xs: "flex", md: "none" },
-          }}
-        >
-          <Box
-            sx={{
-              padding: 2,
-            }}
-          >
-            <Stack
-              spacing={1}
-              justifyContent="space-between"
-              flexWrap={"nowrap"}
-              flexDirection="row-reverse"
-            >
-              <IconButton>
-                <CloseIcon onClick={() => setOpen(false)} />
-              </IconButton>
-            </Stack>
-            <Navs
-              style={{
-                flexDirection: "column",
-                alignItems: "flex-start",
-                padding: 0,
-              }}
-              onItemClick={() => setOpen(false)}
-              showMyApps={isToken}
-            />
-            {isToken && (
-              <Box mt={-2} mb={1}>
-                <List
-                  sx={{
-                    width: "100%",
-                    maxWidth: 300,
-                  }}
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
-                >
-                  <ListItemButton onClick={handelOpenList}>
-                    <ListItemText
-                      disableTypography
-                      primary={user?.firstName + user?.secondName}
-                      sx={{
-                        fontWeight: "bold",
-                        fontSize: "1.1rem",
-                        color: (theme) => theme.palette.primary.main,
-                      }}
-                    />
-                    {openList ? <ExpandLess /> : <ExpandMore />}
-                  </ListItemButton>
-                  <Collapse in={openList} timeout="auto" unmountOnExit>
-                    <Box>
-                      <Box textAlign="center" mt={0.8} mb={0.8}>
-                        <Link to="/profile">
-                          <Button
-                            variant="contained"
-                            disableFocusRipple
-                            fullWidth
-                            onClick={() => setOpen(false)}
-                            sx={{
-                              border: "2px solid",
-                              borderColor: "primary.main",
-                              borderRadius: "50px",
-                              "&:hover": {
-                                border: "2px solid",
-                                borderColor: "primary.main",
-                              },
-                              boxShadow: "none",
-                              width: "70%",
-                              minWidth: 200,
-                            }}
-                          >
-                            الملف الشخصى
-                          </Button>
-                        </Link>
-                      </Box>
-                      <Divider light />
-                      <Box mt={1}>
-                        <Typography mb={-1} color="textSecondary">
-                          حساباتى
-                        </Typography>
-                        {(user?.relatedCustkeyList || []).length < 1 && (
-                          <Typography variant="subtitle2" color="error">
-                            لا يوجد لديك ارقام اشتراك
-                          </Typography>
-                        )}
-                        <List>
-                          {(user.relatedCustkeyList || []).map(
-                            (acc: RELATED_CUSTKEY.AsObject) => {
-                              const labelId = `checkbox-list-label-${acc?.custkey}`;
-                              return (
-                                <ListItem
-                                  key={acc?.custkey}
-                                  onClick={(e) => handleChange(e, acc)}
-                                  sx={{
-                                    padding: 0.8,
-                                  }}
-                                  button
-                                >
-                                  <ListItemAvatar>
-                                    <Avatar alt={acc.custname} />
-                                  </ListItemAvatar>
-                                  <ListItemTextStyle
-                                    id={labelId}
-                                    primary={acc.custname}
-                                    secondary={"رقم الحساب : " + acc?.custkey}
-                                    primaryTypographyProps={{
-                                      fontWeight: "medium",
-                                      variant: "body2",
-                                      marginBottom: 0.5,
-                                    }}
-                                    secondaryTypographyProps={{
-                                      noWrap: true,
-                                      fontSize: 12,
-                                      lineHeight: "16px",
-                                    }}
-                                  />
-                                  <Box>
-                                    <Radio
-                                      onChange={(e) => handleChange(e, acc)}
-                                      value={acc?.custkey}
-                                      name="radio-buttons"
-                                      checked={
-                                        acc?.custkey === selectedUser?.custkey
-                                      }
-                                    />
-                                  </Box>
-                                </ListItem>
-                              );
-                            }
-                          )}
-                        </List>
-                      </Box>
-                      <Link to="/anotherAccount">
-                        <Box
-                          display={"flex"}
-                          mb={1}
-                          mt={-1}
-                          flexDirection="row"
-                          whiteSpace={"pre"}
-                          alignItems={"center"}
-                          px={1.5}
-                        >
-                          <PersonAddOutlined
-                            fontSize="large"
-                            color="secondary"
-                          />
-                          <Button
-                            variant="text"
-                            color="secondary"
-                            sx={{
-                              mt: 0.5,
-                            }}
-                            onClick={() => setOpen(false)}
-                          >
-                            {(user?.relatedCustkeyList || []).length < 1
-                              ? "اضافة رقم اشتراك"
-                              : " اضافة حساب اخر"}
-                          </Button>
-                        </Box>
-                      </Link>
-                      <Divider light />
-                      <Button
-                        disableFocusRipple
-                        onClick={handelSignOut}
-                        fullWidth
-                        color="error"
-                        variant="outlined"
-                        sx={{
-                          border: "2px solid",
-                          borderColor: "error.main",
-                          borderRadius: "50px",
-                          "&:hover": {
-                            border: "2px solid",
-                            borderColor: "error.main",
-                          },
-                          boxShadow: "none",
-                          width: "100%",
-                        }}
-                      >
-                        تسجيل الخروج
-                      </Button>
-                    </Box>
-                  </Collapse>
-                </List>
-              </Box>
-            )}
 
-            {!isToken && (
-              <Link to="/login">
-                <Button
-                  variant="contained"
-                  disableFocusRipple
-                  sx={{
-                    border: "2px solid",
-                    borderColor: "primary.main",
-                    borderRadius: "50px",
-                    minWidth: 250,
-                    "&:hover": {
-                      border: "2px solid",
-                      borderColor: "primary.main",
-                    },
-                  }}
-                >
-                  تسجيل الدخول
-                </Button>
-              </Link>
-            )}
-          </Box>
-        </DrawerHeader>
-        <ProfileMenu
-          menu={{
-            open: openProfileMenu,
-            anchorEl: anchorEl,
-            onClose: handleClose,
-          }}
-          onClickItem={() => setAnchorEl(null)}
-        />
-      </AppBar>
-      {user?.isActive === false && location.pathname !== "/activation" && (
-        <Link to="/activation">
-          <Typography
-            sx={{
-              background: "#fff",
-              borderBottom: `1px solid #eee`,
-              "&:hover": {
-                color: (theme: Theme) => theme.palette.error.dark,
-              },
-            }}
-            p={2}
-            textAlign={"center"}
-            variant="subtitle1"
-            color="error"
-            fontWeight={"bold"}
-          >
-            الحساب غير مُفعل - لتفعيل الحساب اضغط هنا !
-          </Typography>
-        </Link>
-      )}
-    </>
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const menuId = "primary-search-account-menu";
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
   );
-};
-export default Header;
 
-const DrawerHeader = styled(Drawer)(({ theme }) => ({
-  "& .MuiDrawer-paper": {
-    width: "100%",
+  const mobileMenuId = "primary-search-account-menu-mobile";
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  );
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="fixed"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ ml: 0.5 }}
+          >
+            <img src={Logo} height={50} alt="Madinaty logo" />
+          </IconButton>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
+            Madinaty open air mall
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="info">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </Box>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
+    </Box>
+  );
+}
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
   },
 }));
-const ListItemTextStyle = styled(ListItemText)(({ theme }) => ({
-  "": {},
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
 }));

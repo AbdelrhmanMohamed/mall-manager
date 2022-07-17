@@ -8,7 +8,7 @@ import {
   responsiveFontSizes,
 } from "@mui/material/styles";
 //
-import rtlPlugin from "stylis-plugin-rtl";
+// import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
@@ -39,7 +39,7 @@ export default function ThemeProvider({ children }) {
   theme.components = componentsOverride(theme);
   const cacheRtl = createCache({
     key: "mui",
-    stylisPlugins: [prefixer, rtlPlugin],
+    stylisPlugins: [prefixer],
     prepend: true,
   });
   theme = responsiveFontSizes(theme);

@@ -6,12 +6,6 @@ import NotRequireAuth from "./NoAuth";
 // import { checkTokenCookie } from "client/grbc";
 
 const AuthLogin = Loadable(lazy(() => import("pages/authentication/Login")));
-const AuthRegister = Loadable(
-  lazy(() => import("pages/authentication/register"))
-);
-const Forgetpass = Loadable(
-  lazy(() => import("pages/authentication/Forgetpass"))
-);
 
 // ==============================|| AUTH ROUTING ||============================== //
 
@@ -24,22 +18,6 @@ const AuthRoutes: RouteObject = {
       element: (
         <NotRequireAuth>
           <AuthLogin />
-        </NotRequireAuth>
-      ),
-    },
-    {
-      path: "register",
-      element: (
-        <NotRequireAuth>
-          <AuthRegister />
-        </NotRequireAuth>
-      ),
-    },
-    {
-      path: "forgetpass",
-      element: (
-        <NotRequireAuth>
-          <Forgetpass />
         </NotRequireAuth>
       ),
     },

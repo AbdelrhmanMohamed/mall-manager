@@ -1,43 +1,30 @@
 import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "./Footer";
 import Header from "./Header";
-import MasSnackbar from "pages/Snackbar";
-import { useAppDispatch } from "app/hooks";
-import { getAppTypes } from "redux/apptypsSlice";
-import { getAppTypesGategory } from "redux/appTypeGategorySlice";
-import { APPLICATION_TYPE_REQUEST } from "proto/mobileservice/ts/mobileService_pb";
+import MallSnackbar from "components/ui/mall-snackbar";
+import Drawer from "./Drawer";
+import Toolbar from "@mui/material/Toolbar";
+import CssBaseline from "@mui/material/CssBaseline";
 
 export default function MainLayout() {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    let obj: APPLICATION_TYPE_REQUEST.AsObject = {
-      active: true,
-      withDraw: false,
-      withIcon: false,
-    };
-    dispatch(getAppTypes(obj));
-    dispatch(getAppTypesGategory());
-  }, [dispatch]);
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
-        flexWrap: "nowrap",
-        width: "100%",
         overflowX: "hidden",
         minHeight: "100vh",
       }}
     >
+      <CssBaseline />
       <Header />
-      <Box minHeight={"90vh"}>
-        <ScrollToTop />
+      <Drawer />
+      <ScrollToTop />
+      <Box component="main" sx={{ flexGrow: 1, p: 1 }}>
+        <Toolbar />
         <Outlet />
       </Box>
-      <Footer />
-      <MasSnackbar />
+      <MallSnackbar />
     </Box>
   );
 }
