@@ -59,9 +59,9 @@ message ShopResponse {
     required int64 ShopID = 2;  
     optional int64 ShopArea = 3;  
     optional int64 ShopType = 4;  
-    optional float TmgPercentage = 4;  
-    optional DateTime ContractStart = 5;  
-    optional DateTime ContractEnd = 6;  
+    optional float TmgPercentage = 5;  
+    optional DateTime ContractStart = 6;  
+    optional DateTime ContractEnd = 7;  
 }
 message DashboardCountsRequest {
     optional Date DateFrom = 1;
