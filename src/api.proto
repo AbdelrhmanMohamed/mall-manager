@@ -1,0 +1,135 @@
+// syntax = "proto2";
+package MallPck;
+
+service mall {
+  rpc SignIn(LoginRequest) returns (LoginResponse) {}
+  rpc ForgetPass(ForgetRequest) returns (ForgetResponse) {}
+  rpc GetUserProfile(EmptyMessage) returns (GetUserProfileResponse) {}
+  rpc GetShopById(ShopRequest) returns (ShopResponse) {}
+  rpc GetDashboardCounts(DashboardCountsRequest) returns (DashboardCountsResponse) {}
+  rpc GetShopSalesStatistics(StatsRequest) returns (StatsWithDescResponse) {} 
+  rpc GetMallRevenueDifference(StatsRequest) returns (StatsWithDescResponse) {} 
+  rpc GetInvoices(EmptyMessage) returns (InvoicResponse) {} 
+  rpc GetMallStructure(EmptyMessage) returns (MallStructureResponse) {} 
+  
+}
+message EmptyMessage {}
+message LoginRequest {
+  optional string Username = 1;
+  optional string Email = 1;
+  required string Password = 2;
+  //  user can choose the method of login with email or username
+  // validate in server send one
+}
+
+message LoginResponse {
+    required string Token = 1;
+    optional bool Activated = 2;
+    required string Name = 3;
+    optional DateTime ExpiresAt = 4;
+    required bool Is_MallManager= 5;
+    required bool Is_ShopManager= 6;
+    optional int64 ShopID = 7;
+}
+message ForgetRequest {
+    optional string Username = 1;
+    optional string Email = 2;
+}
+message ForgetResponse {
+    optional string Message = 1;
+    required string Token = 2;
+}
+message GetUserProfileResponse {
+    required int64 ID = 1;  
+    required string Name = 2;
+    optional string Email = 3;      
+    optional string MobileNo = 4;  
+    optional string Password = 5;   
+    optional bool Activated = 6;
+    optional bool Is_MallManager = 7;
+    optional bool Is_ShopManager = 8;
+    optional string JobTitle = 9;
+    optional int64 ShopID = 7;
+}
+message ShopRequest {
+    required int64 ShopID = 1;  
+}
+message ShopResponse {
+    required int64 ShopName = 1;
+    required int64 ShopID = 2;  
+    optional int64 ShopArea = 3;  
+    optional int64 ShopType = 4;  
+    optional float TmgPercentage = 4;  
+    optional DateTime ContractStart = 5;  
+    optional DateTime ContractEnd = 6;  
+}
+message DashboardCountsRequest {
+    optional Date DateFrom = 1;
+    optional Date DateTo = 2;
+}
+message DashboardCountsResponse {
+    optional double TotalSales = 1;
+    optional double Refunds = 2;
+    optional float TMGPercentage = 3;
+    optional double TMGAmount = 4;
+    repeated PopularCategories StatsWithDescResponse= 5;
+    repeated CustomerTraffic StatsWithDescResponse = 6;
+}
+message StatsWithDescResponse {
+    repeated StatsResponse Stats = 1;
+    // repeated Category Category = 2;
+}
+
+message StatsRequest {
+    required FILTER Filter = 1; // last week or last month ...
+    optional Date Year = 2;  // filter by year
+}
+
+enum FILTER {
+    week = 1;
+    month = 2;
+    year = 3;
+}
+
+message StatsResponse {
+    repeated string labels = 1;
+    repeated DatasetCounts datasets = 2; // sales / orders
+  }
+message DatasetCounts {
+    string label = 1;
+    repeated int32 data = 2;
+  }
+
+message InvoicResponse {
+    required string InvoiceID = 1;
+    required DateTime TimeStamp = 2;
+    required int64 Subtotal = 3;  
+    required string Services = 4;  
+    required float VAT = 5;  
+    required double GrandTotal = 5;  
+}
+ message MallStructureRequest {
+    optional int32 TotalAreas = 1;
+    optional int32 TotalShops = 2;
+    optional int32 Rented = 3;
+    optional int32 Integrated = 4;
+    repeated Areas Areas= 5;
+}
+
+ message Areas {
+    optional int32 FloorNumber = 1;
+    optional int32 NumberOfShops = 2;
+    optional int32 Active = 3;
+    optional int32 Integrated = 4;
+    repeated Areas Closed= 5;
+}
+
+
+
+
+
+
+// message Category {
+//     required string Name = 1;
+//     required double Percentage = 2;
+// }
