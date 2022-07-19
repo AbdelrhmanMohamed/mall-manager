@@ -1,7 +1,7 @@
-// syntax = "proto2";
-package MallPck;
+syntax = "proto2";
+package POSPck;
 
-service mall {
+service POS {
   rpc SignIn(LoginRequest) returns (LoginResponse) {}
   rpc ForgetPass(ForgetRequest) returns (ForgetResponse) {}
   rpc GetUserProfile(EmptyMessage) returns (GetUserProfileResponse) {}
@@ -9,8 +9,10 @@ service mall {
   rpc GetDashboardCounts(DashboardCountsRequest) returns (DashboardCountsResponse) {}
   rpc GetShopSalesStatistics(StatsRequest) returns (StatsWithDescResponse) {} 
   rpc GetMallRevenueDifference(StatsRequest) returns (StatsWithDescResponse) {} 
-  rpc GetInvoices(EmptyMessage) returns (InvoicResponse) {} 
+  rpc GetShopInvoices(ShopInvoicesRequest) returns (ShopInvoicResponse) {} 
   rpc GetMallStructure(EmptyMessage) returns (MallStructureResponse) {} 
+  rpc GetAllShops(AllShopsRequest) returns (AllShopsResponse) {} 
+  rpc AddShop(Shop) returns (MessageResponse) {} 
   
 }
 message EmptyMessage {}
@@ -63,6 +65,18 @@ message ShopResponse {
     optional DateTime ContractStart = 6;  
     optional DateTime ContractEnd = 7;  
 }
+message RenterInfo {
+    required int64 RenterName = 1;
+    required int64 RenterID = 2;  
+    optional int64 Phone = 3;  
+    optional int64 Percentage = 4;  
+    optional float TmgPercentage = 5;  
+    optional DateTime ContractStart = 6;  
+    optional DateTime ContractEnd = 7;  
+    optional string TradeName = 8;  
+    optional string Email = 9;  
+    optional string Password = 10;  
+}
 message DashboardCountsRequest {
     optional Date DateFrom = 1;
     optional Date DateTo = 2;
@@ -100,7 +114,10 @@ message DatasetCounts {
     repeated int32 data = 2;
   }
 
-message InvoicResponse {
+message ShopInvoicesRequest {
+    required int64 ShopID = 1;
+}
+message ShopInvoicResponse {
     required string InvoiceID = 1;
     required DateTime TimeStamp = 2;
     required int64 Subtotal = 3;  
@@ -121,12 +138,43 @@ message InvoicResponse {
     optional int32 NumberOfShops = 2;
     optional int32 Active = 3;
     optional int32 Integrated = 4;
-    repeated Areas Closed= 5;
+    optional int32 Closed= 5;
 }
 
+ message AllShopsRequest {
+    required int32 FloorNumber = 1;
+    optional SHOP_STATUS Status= 2;
+}
+message AllShopsResponse {
+    repeated Shop Shops= 5;
+}
+ message Shop {
+    required string ShopName = 1;
+    required int64 ShopID = 2;
+    optional int64 Area = 3;
+    optional float Percentage = 4;
+    optional string Type= 5;
+    required SHOP_STATUS Status= 6;
+    optional DateTime ContractStart= 7;
+    optional DateTime ContractStart = 8;  
+}
 
-
-
+message ForgetResponse {
+    optional string Message = 1;
+    required string Token = 2;
+}
+message MessageResponse {
+    optional string Message = 1;
+    optional bool Done = 2;
+    optional int64 ID = 3;
+}
+enum SHOP_STATUS {
+    Rented = 1;
+    Unrented = 2;
+    Integrated = 3;
+    Closed = 4;
+    Active = 5;
+}
 
 
 // message Category {
