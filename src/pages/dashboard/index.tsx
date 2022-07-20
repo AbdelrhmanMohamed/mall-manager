@@ -1,6 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import Filter from "./Filter";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,5 +33,10 @@ export const data = {
 };
 
 export default function App() {
-  return <Doughnut data={data} />;
+  return (
+    <>
+      <Filter />
+      <Doughnut data={data} />;
+    </>
+  );
 }

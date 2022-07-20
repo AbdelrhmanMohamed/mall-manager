@@ -20,7 +20,7 @@ export default function MainLayout() {
       <Header />
       <Drawer />
       <ScrollToTop />
-      <Box component="main" sx={{ flexGrow: 1, p: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
         <Toolbar />
         <Outlet />
       </Box>
