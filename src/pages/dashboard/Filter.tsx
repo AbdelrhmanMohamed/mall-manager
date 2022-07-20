@@ -23,21 +23,47 @@ export default function Filter() {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} alignItems="center">
       <Grid item>{today.toLocaleString(undefined, options)}</Grid>
-      <Grid item sx={{}}>
-        <Typography variant="h6">Reports are displayed</Typography>
+      <Grid item flexGrow={1}></Grid>
+      <Grid item>
+        <Typography fontWeight="bold" variant="h6">
+          Reports are displayed
+        </Typography>
       </Grid>
       <Grid item>
         <MallDatePicker
           value={value}
           onChange={handleChange}
           renderInput={(params) => (
-            <TextField sx={DateInputStyle} size="small" {...params} />
+            <TextField
+              sx={DateInputStyle}
+              size="small"
+              {...params}
+              inputProps={{
+                ...params.inputProps,
+                placeholder: "Date From",
+              }}
+            />
           )}
-          //   components={{
-          //     OpenPickerIcon: DateIcon,
-          //   }}
+          label={""}
+        />
+      </Grid>
+      <Grid item>
+        <MallDatePicker
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => (
+            <TextField
+              sx={DateInputStyle}
+              size="small"
+              {...params}
+              inputProps={{
+                ...params.inputProps,
+                placeholder: "Date To",
+              }}
+            />
+          )}
           label={""}
         />
       </Grid>
@@ -47,16 +73,9 @@ export default function Filter() {
 
 const DateInputStyle: SxProps<Theme> = {
   backgroundColor: (theme) => theme.palette.background.paper,
-  borderRadius: 2,
+  borderRadius: 0.5,
   boxShadow: (theme) => theme.shadows[2],
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
-  },
-  "& .MuiInputBase-root-MuiOutlinedInput-root": {
-    "& .MuiInputAdornment-root": {
-      "& .MuiButtonBase-root-MuiIconButton-root": {
-        color: "red",
-      },
-    },
   },
 };

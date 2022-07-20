@@ -1,9 +1,17 @@
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 import Filter from "./Filter";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import Box from "@mui/material/Box";
+import MallCard from "components/ui/MallCrad";
+import Grid from "@mui/material/Grid";
+import {
+  SalesIcon,
+  RefundsIcon,
+  PercentageIcon,
+} from "components/ui/mall-icons";
+import Paper from "@mui/material/Paper";
+import { BarChart, DoughnutChart } from "./Charts";
+import Typography from "@mui/material/Typography";
+import MallTable from "components/ui/MallTable";
 
 export const data = {
   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -32,11 +40,93 @@ export const data = {
   ],
 };
 
-export default function App() {
+export default function Dashboard() {
   return (
     <>
-      <Filter />
-      <Doughnut data={data} />;
+      <Box mb={4}>
+        <Filter />
+      </Box>
+      <Grid container spacing={2} mb={3}>
+        <Grid item xs={3}>
+          <MallCard
+            title="Total Sales"
+            color="primary.main"
+            amount="25.300 EGP"
+            icon={<SalesIcon sx={{ color: "primary.main" }} />}
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <MallCard
+            title="Refunds"
+            color="chart.orange"
+            amount="4,000"
+            icon={
+              <RefundsIcon
+                sx={{ color: (theme: any) => theme.palette.chart.orange }}
+              />
+            }
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <MallCard
+            title="TMG Percentage"
+            color="chart.green"
+            amount="20 %"
+            icon={
+              <PercentageIcon
+                sx={{ color: (theme: any) => theme.palette.chart.green }}
+              />
+            }
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <MallCard
+            title="TMG Amount"
+            color="chart.violet"
+            amount="2,000"
+            icon={
+              <PercentageIcon
+                sx={{ color: (theme: any) => theme.palette.chart.violet }}
+              />
+            }
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={9}>
+          <Paper elevation={2} sx={{ p: 1.5 }}>
+            <BarChart />
+          </Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper sx={{ p: 1.5 }} elevation={2}>
+            <Typography variant="h6" fontWeight={"bold"}>
+              Popular Categories
+              <Box mt={1}>
+                <DoughnutChart />
+              </Box>
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+      <Paper
+        sx={{
+          height: 600,
+          mt: 3,
+          p: 1.5,
+          display: "flex",
+          flexDirection: "column",
+        }}
+        elevation={2}
+      >
+        <Box p={2}>
+          <Typography variant="h6" fontWeight="bold">
+            Invoices
+          </Typography>
+        </Box>
+        <MallTable />
+      </Paper>
+      <Box mt={12}></Box>
     </>
   );
 }

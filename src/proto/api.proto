@@ -18,8 +18,8 @@ service POS {
 message EmptyMessage {}
 message LoginRequest {
   optional string Username = 1;
-  optional string Email = 1;
-  required string Password = 2;
+  optional string Email = 2;
+  required string Password = 3;
   //  user can choose the method of login with email or username
   // validate in server send one
 }
@@ -28,7 +28,7 @@ message LoginResponse {
     required string Token = 1;
     optional bool Activated = 2;
     required string Name = 3;
-    optional DateTime ExpiresAt = 4;
+    optional string ExpiresAt = 4;
     required bool Is_MallManager= 5;
     required bool Is_ShopManager= 6;
     optional int64 ShopID = 7;
@@ -51,7 +51,7 @@ message GetUserProfileResponse {
     optional bool Is_MallManager = 7;
     optional bool Is_ShopManager = 8;
     optional string JobTitle = 9;
-    optional int64 ShopID = 7;
+    optional int64 ShopID = 10;
 }
 message ShopRequest {
     required int64 ShopID = 1;  
@@ -62,8 +62,8 @@ message ShopResponse {
     optional int64 ShopArea = 3;  
     optional int64 ShopType = 4;  
     optional float TmgPercentage = 5;  
-    optional DateTime ContractStart = 6;  
-    optional DateTime ContractEnd = 7;  
+    optional string ContractStart = 6;  
+    optional string ContractEnd = 7;  
 }
 message RenterInfo {
     required int64 RenterName = 1;
@@ -71,23 +71,23 @@ message RenterInfo {
     optional int64 Phone = 3;  
     optional int64 Percentage = 4;  
     optional float TmgPercentage = 5;  
-    optional DateTime ContractStart = 6;  
-    optional DateTime ContractEnd = 7;  
+    optional string ContractStart = 6;  
+    optional string ContractEnd = 7;  
     optional string TradeName = 8;  
     optional string Email = 9;  
     optional string Password = 10;  
 }
 message DashboardCountsRequest {
-    optional Date DateFrom = 1;
-    optional Date DateTo = 2;
+    optional string DateFrom = 1;
+    optional string DateTo = 2;
 }
 message DashboardCountsResponse {
     optional double TotalSales = 1;
     optional double Refunds = 2;
     optional float TMGPercentage = 3;
     optional double TMGAmount = 4;
-    repeated PopularCategories StatsWithDescResponse= 5;
-    repeated CustomerTraffic StatsWithDescResponse = 6;
+    repeated StatsWithDescResponse PopularCategories   = 5;
+    repeated StatsWithDescResponse CustomerTraffic = 6;
 }
 message StatsWithDescResponse {
     repeated StatsResponse Stats = 1;
@@ -96,7 +96,7 @@ message StatsWithDescResponse {
 
 message StatsRequest {
     required FILTER Filter = 1; // last week or last month ...
-    optional Date Year = 2;  // filter by year
+    optional string Year = 2;  // filter by year
 }
 
 enum FILTER {
@@ -110,7 +110,7 @@ message StatsResponse {
     repeated DatasetCounts datasets = 2; // sales / orders
   }
 message DatasetCounts {
-    string label = 1;
+    required string label = 1;
     repeated int32 data = 2;
   }
 
@@ -119,13 +119,13 @@ message ShopInvoicesRequest {
 }
 message ShopInvoicResponse {
     required string InvoiceID = 1;
-    required DateTime TimeStamp = 2;
+    required string TimeStamp = 2;
     required int64 Subtotal = 3;  
     required string Services = 4;  
     required float VAT = 5;  
-    required double GrandTotal = 5;  
+    required double GrandTotal = 6;  
 }
- message MallStructureRequest {
+ message MallStructureResponse {
     optional int32 TotalAreas = 1;
     optional int32 TotalShops = 2;
     optional int32 Rented = 3;
@@ -155,13 +155,8 @@ message AllShopsResponse {
     optional float Percentage = 4;
     optional string Type= 5;
     required SHOP_STATUS Status= 6;
-    optional DateTime ContractStart= 7;
-    optional DateTime ContractStart = 8;  
-}
-
-message ForgetResponse {
-    optional string Message = 1;
-    required string Token = 2;
+    optional string ContractStart= 7;
+    optional string ContractEnd = 8;  
 }
 message MessageResponse {
     optional string Message = 1;

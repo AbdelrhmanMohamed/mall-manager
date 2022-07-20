@@ -12,15 +12,13 @@ export default function MainLayout() {
     <Box
       sx={{
         display: "flex",
-        overflowX: "hidden",
-        minHeight: "100vh",
       }}
     >
       <CssBaseline />
       <Header />
       <Drawer />
       <ScrollToTop />
-      <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
+      <Box component="main" sx={{ flexGrow: 1, px: 2, py: 4 }}>
         <Toolbar />
         <Outlet />
       </Box>

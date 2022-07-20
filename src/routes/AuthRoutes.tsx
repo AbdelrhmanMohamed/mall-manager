@@ -19,7 +19,7 @@ const AuthRoutes: RouteObject[] = [
         index: true,
         element: (
           <RequireAuth>
-            <Dashboard />,
+            <Dashboard />
           </RequireAuth>
         ),
       },
