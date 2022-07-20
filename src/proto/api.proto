@@ -10,6 +10,7 @@ service POS {
   rpc GetShopSalesStatistics(StatsRequest) returns (StatsWithDescResponse) {} 
   rpc GetMallRevenueDifference(StatsRequest) returns (StatsWithDescResponse) {} 
   rpc GetShopInvoices(ShopInvoicesRequest) returns (ShopInvoicResponse) {} 
+  rpc GetTransactionsOfInvoice(TransactionsOfInvoiceRequest) returns (TransactionsOfInvoiceRespone) {} 
   rpc GetMallStructure(EmptyMessage) returns (MallStructureResponse) {} 
   rpc GetAllShops(AllShopsRequest) returns (AllShopsResponse) {} 
   rpc AddShop(Shop) returns (MessageResponse) {} 
@@ -118,12 +119,24 @@ message ShopInvoicesRequest {
     required int64 ShopID = 1;
 }
 message ShopInvoicResponse {
-    required string InvoiceID = 1;
+    required int64 InvoiceID = 1;
     required string TimeStamp = 2;
     required int64 Subtotal = 3;  
     required string Services = 4;  
     required float VAT = 5;  
     required double GrandTotal = 6;  
+}
+message TransactionsOfInvoiceRequest {
+    required int64 InvoiceID = 1;
+}
+message TransactionsOfInvoiceRespone {
+    required int64 OrderID = 1;
+    required string TimeStamp = 2;
+    required int64 Product = 3;  
+    required string Quantity = 4;  
+    required float VAT = 5;
+    required int64 Subtotal = 6;  
+    required double GrandTotal = 7;  
 }
  message MallStructureResponse {
     optional int32 TotalAreas = 1;

@@ -82,6 +82,15 @@ POS.GetShopInvoices = {
   responseType: api_pb.ShopInvoicResponse
 };
 
+POS.GetTransactionsOfInvoice = {
+  methodName: "GetTransactionsOfInvoice",
+  service: POS,
+  requestStream: false,
+  responseStream: false,
+  requestType: api_pb.TransactionsOfInvoiceRequest,
+  responseType: api_pb.TransactionsOfInvoiceRespone
+};
+
 POS.GetMallStructure = {
   methodName: "GetMallStructure",
   service: POS,
@@ -338,6 +347,37 @@ POSClient.prototype.getShopInvoices = function getShopInvoices(requestMessage, m
     callback = arguments[1];
   }
   var client = grpc.unary(POS.GetShopInvoices, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+POSClient.prototype.getTransactionsOfInvoice = function getTransactionsOfInvoice(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(POS.GetTransactionsOfInvoice, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

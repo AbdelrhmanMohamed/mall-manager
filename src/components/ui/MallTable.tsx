@@ -22,7 +22,7 @@ export default function MallTable() {
 
 const rows: ShopInvoicResponse.AsObject[] = [
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",
@@ -30,7 +30,7 @@ const rows: ShopInvoicResponse.AsObject[] = [
     grandtotal: 500,
   },
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",
@@ -38,7 +38,7 @@ const rows: ShopInvoicResponse.AsObject[] = [
     grandtotal: 500,
   },
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",
@@ -46,7 +46,7 @@ const rows: ShopInvoicResponse.AsObject[] = [
     grandtotal: 500,
   },
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",
@@ -54,7 +54,7 @@ const rows: ShopInvoicResponse.AsObject[] = [
     grandtotal: 500,
   },
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",
@@ -62,7 +62,7 @@ const rows: ShopInvoicResponse.AsObject[] = [
     grandtotal: 500,
   },
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",
@@ -70,7 +70,7 @@ const rows: ShopInvoicResponse.AsObject[] = [
     grandtotal: 500,
   },
   {
-    invoiceid: "#00001",
+    invoiceid: 100002,
     timestamp: "12/1/2022",
     subtotal: 2540,
     services: "Paid",

@@ -76,6 +76,15 @@ type POSGetShopInvoices = {
   readonly responseType: typeof api_pb.ShopInvoicResponse;
 };
 
+type POSGetTransactionsOfInvoice = {
+  readonly methodName: string;
+  readonly service: typeof POS;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof api_pb.TransactionsOfInvoiceRequest;
+  readonly responseType: typeof api_pb.TransactionsOfInvoiceRespone;
+};
+
 type POSGetMallStructure = {
   readonly methodName: string;
   readonly service: typeof POS;
@@ -113,6 +122,7 @@ export class POS {
   static readonly GetShopSalesStatistics: POSGetShopSalesStatistics;
   static readonly GetMallRevenueDifference: POSGetMallRevenueDifference;
   static readonly GetShopInvoices: POSGetShopInvoices;
+  static readonly GetTransactionsOfInvoice: POSGetTransactionsOfInvoice;
   static readonly GetMallStructure: POSGetMallStructure;
   static readonly GetAllShops: POSGetAllShops;
   static readonly AddShop: POSAddShop;
@@ -221,6 +231,15 @@ export class POSClient {
   getShopInvoices(
     requestMessage: api_pb.ShopInvoicesRequest,
     callback: (error: ServiceError|null, responseMessage: api_pb.ShopInvoicResponse|null) => void
+  ): UnaryResponse;
+  getTransactionsOfInvoice(
+    requestMessage: api_pb.TransactionsOfInvoiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: api_pb.TransactionsOfInvoiceRespone|null) => void
+  ): UnaryResponse;
+  getTransactionsOfInvoice(
+    requestMessage: api_pb.TransactionsOfInvoiceRequest,
+    callback: (error: ServiceError|null, responseMessage: api_pb.TransactionsOfInvoiceRespone|null) => void
   ): UnaryResponse;
   getMallStructure(
     requestMessage: api_pb.EmptyMessage,

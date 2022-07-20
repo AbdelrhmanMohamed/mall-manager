@@ -175,6 +175,30 @@ function deserialize_POSPck_ShopInvoicResponse(arg) {
   return api_pb.ShopInvoicResponse.deserializeBinary(new Uint8Array(arg));
 }
 
+function serialize_POSPck_TransactionsOfInvoiceRequest(arg) {
+  if (!arg instanceof api_pb.TransactionsOfInvoiceRequest) {
+    throw new Error("Expected argument of type POSPck.TransactionsOfInvoiceRequest");
+  }
+
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_POSPck_TransactionsOfInvoiceRequest(arg) {
+  return api_pb.TransactionsOfInvoiceRequest.deserializeBinary(new Uint8Array(arg));
+}
+
+function serialize_POSPck_TransactionsOfInvoiceRespone(arg) {
+  if (!arg instanceof api_pb.TransactionsOfInvoiceRespone) {
+    throw new Error("Expected argument of type POSPck.TransactionsOfInvoiceRespone");
+  }
+
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_POSPck_TransactionsOfInvoiceRespone(arg) {
+  return api_pb.TransactionsOfInvoiceRespone.deserializeBinary(new Uint8Array(arg));
+}
+
 function serialize_POSPck_MallStructureResponse(arg) {
   if (!arg instanceof api_pb.MallStructureResponse) {
     throw new Error("Expected argument of type POSPck.MallStructureResponse");
@@ -323,6 +347,17 @@ const POSService = exports.POSService = {
     requestDeserialize: deserialize_POSPck_ShopInvoicesRequest,
     responseSerialize: serialize_POSPck_ShopInvoicResponse,
     responseDeserialize: deserialize_POSPck_ShopInvoicResponse
+  },
+  getTransactionsOfInvoice: {
+    path: "/POSPck.POS/GetTransactionsOfInvoice",
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.TransactionsOfInvoiceRequest,
+    responseType: api_pb.TransactionsOfInvoiceRespone,
+    requestSerialize: serialize_POSPck_TransactionsOfInvoiceRequest,
+    requestDeserialize: deserialize_POSPck_TransactionsOfInvoiceRequest,
+    responseSerialize: serialize_POSPck_TransactionsOfInvoiceRespone,
+    responseDeserialize: deserialize_POSPck_TransactionsOfInvoiceRespone
   },
   getMallStructure: {
     path: "/POSPck.POS/GetMallStructure",

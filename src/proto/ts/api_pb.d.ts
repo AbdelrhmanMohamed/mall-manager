@@ -610,8 +610,8 @@ export namespace ShopInvoicesRequest {
 export class ShopInvoicResponse extends jspb.Message {
   hasInvoiceid(): boolean;
   clearInvoiceid(): void;
-  getInvoiceid(): string | undefined;
-  setInvoiceid(value: string): void;
+  getInvoiceid(): number | undefined;
+  setInvoiceid(value: number): void;
 
   hasTimestamp(): boolean;
   clearTimestamp(): void;
@@ -650,11 +650,91 @@ export class ShopInvoicResponse extends jspb.Message {
 
 export namespace ShopInvoicResponse {
   export type AsObject = {
-    invoiceid?: string,
+    invoiceid?: number,
     timestamp?: string,
     subtotal?: number,
     services?: string,
     vat?: number,
+    grandtotal?: number,
+  }
+}
+
+export class TransactionsOfInvoiceRequest extends jspb.Message {
+  hasInvoiceid(): boolean;
+  clearInvoiceid(): void;
+  getInvoiceid(): number | undefined;
+  setInvoiceid(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransactionsOfInvoiceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TransactionsOfInvoiceRequest): TransactionsOfInvoiceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransactionsOfInvoiceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransactionsOfInvoiceRequest;
+  static deserializeBinaryFromReader(message: TransactionsOfInvoiceRequest, reader: jspb.BinaryReader): TransactionsOfInvoiceRequest;
+}
+
+export namespace TransactionsOfInvoiceRequest {
+  export type AsObject = {
+    invoiceid?: number,
+  }
+}
+
+export class TransactionsOfInvoiceRespone extends jspb.Message {
+  hasOrderid(): boolean;
+  clearOrderid(): void;
+  getOrderid(): number | undefined;
+  setOrderid(value: number): void;
+
+  hasTimestamp(): boolean;
+  clearTimestamp(): void;
+  getTimestamp(): string | undefined;
+  setTimestamp(value: string): void;
+
+  hasProduct(): boolean;
+  clearProduct(): void;
+  getProduct(): number | undefined;
+  setProduct(value: number): void;
+
+  hasQuantity(): boolean;
+  clearQuantity(): void;
+  getQuantity(): string | undefined;
+  setQuantity(value: string): void;
+
+  hasVat(): boolean;
+  clearVat(): void;
+  getVat(): number | undefined;
+  setVat(value: number): void;
+
+  hasSubtotal(): boolean;
+  clearSubtotal(): void;
+  getSubtotal(): number | undefined;
+  setSubtotal(value: number): void;
+
+  hasGrandtotal(): boolean;
+  clearGrandtotal(): void;
+  getGrandtotal(): number | undefined;
+  setGrandtotal(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransactionsOfInvoiceRespone.AsObject;
+  static toObject(includeInstance: boolean, msg: TransactionsOfInvoiceRespone): TransactionsOfInvoiceRespone.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransactionsOfInvoiceRespone, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransactionsOfInvoiceRespone;
+  static deserializeBinaryFromReader(message: TransactionsOfInvoiceRespone, reader: jspb.BinaryReader): TransactionsOfInvoiceRespone;
+}
+
+export namespace TransactionsOfInvoiceRespone {
+  export type AsObject = {
+    orderid?: number,
+    timestamp?: string,
+    product?: number,
+    quantity?: string,
+    vat?: number,
+    subtotal?: number,
     grandtotal?: number,
   }
 }
