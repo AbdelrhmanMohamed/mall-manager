@@ -28,17 +28,15 @@ const Lists: ILists[] = [
 
 export default function Navs() {
   return (
-    <>
-      <List>
-        {Lists.map((nav, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{nav.icon}</ListItemIcon>
-              <ListItemText primary={nav.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </>
+    <List>
+      {Lists.map((nav, index) => (
+        <ListItem key={index} disablePadding>
+          <ListItemButton>
+            <ListItemIcon>{nav.icon}</ListItemIcon>
+            <ListItemText primary={nav.name} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
   );
 }

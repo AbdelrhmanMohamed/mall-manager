@@ -12,35 +12,15 @@ import Paper from "@mui/material/Paper";
 import { BarChart, DoughnutChart } from "./Charts";
 import Typography from "@mui/material/Typography";
 import MallTable from "components/ui/MallTable";
-
-export const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
+import { GridColDef } from "@mui/x-data-grid";
+import { ShopInvoicResponse } from "proto/ts/api_pb";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const handelRowClick = (id: any) => {
+    navigate(`invoice/${id}`, { replace: true });
+  };
   return (
     <>
       <Box mb={4}>
@@ -124,9 +104,116 @@ export default function Dashboard() {
             Invoices
           </Typography>
         </Box>
-        <MallTable />
+        <MallTable
+          rows={rows}
+          columns={columns}
+          uniqueKey="invoiceid"
+          onRowDoubleClick={(e) => handelRowClick(e.id)}
+        />
       </Paper>
       <Box mt={12}></Box>
     </>
   );
 }
+const getFieldName = (name: keyof ShopInvoicResponse.AsObject) => {
+  let c: keyof ShopInvoicResponse.AsObject = name;
+  return c;
+};
+const rows: ShopInvoicResponse.AsObject[] = [
+  {
+    invoiceid: 100001,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+  {
+    invoiceid: 100002,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+  {
+    invoiceid: 100003,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+  {
+    invoiceid: 100004,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+  {
+    invoiceid: 100005,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+  {
+    invoiceid: 100006,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+  {
+    invoiceid: 100007,
+    timestamp: "12/1/2022",
+    subtotal: 2540,
+    services: "Paid",
+    vat: 10,
+    grandtotal: 500,
+  },
+];
+
+const columns: GridColDef[] = [
+  { field: getFieldName("invoiceid"), headerName: "Invoice ID", width: 150 },
+  { field: getFieldName("timestamp"), headerName: "Time Stamp", width: 150 },
+  { field: getFieldName("subtotal"), headerName: "Subtotal", width: 150 },
+  { field: getFieldName("services"), headerName: "Services", width: 150 },
+  { field: getFieldName("vat"), headerName: "VAT", width: 150 },
+  {
+    field: getFieldName("grandtotal"),
+    headerName: "Grand Total ",
+    width: 150,
+  },
+];
+
+export const data = {
+  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  datasets: [
+    {
+      label: "# of Votes",
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ],
+};

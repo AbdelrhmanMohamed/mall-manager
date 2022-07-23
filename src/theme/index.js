@@ -45,7 +45,7 @@ export default function ThemeProvider({ children }) {
   theme = responsiveFontSizes(theme);
   return (
     <CacheProvider value={cacheRtl}>
-      <MUIThemeProvider theme={theme}>
+      <MUIThemeProvider theme={theme} injectFirst>
         <CssBaseline />
         {children}
       </MUIThemeProvider>

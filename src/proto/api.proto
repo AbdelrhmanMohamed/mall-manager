@@ -132,7 +132,7 @@ message TransactionsOfInvoiceRequest {
 message TransactionsOfInvoiceRespone {
     required int64 OrderID = 1;
     required string TimeStamp = 2;
-    required int64 Product = 3;  
+    required string Product = 3;  
     required string Quantity = 4;  
     required float VAT = 5;
     required int64 Subtotal = 6;  

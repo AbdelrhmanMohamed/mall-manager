@@ -694,8 +694,8 @@ export class TransactionsOfInvoiceRespone extends jspb.Message {
 
   hasProduct(): boolean;
   clearProduct(): void;
-  getProduct(): number | undefined;
-  setProduct(value: number): void;
+  getProduct(): string | undefined;
+  setProduct(value: string): void;
 
   hasQuantity(): boolean;
   clearQuantity(): void;
@@ -731,7 +731,7 @@ export namespace TransactionsOfInvoiceRespone {
   export type AsObject = {
     orderid?: number,
     timestamp?: string,
-    product?: number,
+    product?: string,
     quantity?: string,
     vat?: number,
     subtotal?: number,
