@@ -36,10 +36,14 @@ const Lists: ListItemLinkProps[] = [
     icon: <MallStructureIcon />,
     to: "/mall-structure",
   },
-  { primary: "Shops", icon: <ShopIcon />, to: "/2" },
-  { primary: "Mall Map", icon: <MapIcon />, to: "/3" },
-  { primary: "Messages", icon: <ForumIcon />, to: "/4" },
-  { primary: "Setting", icon: <SettingsIcon />, to: "/5" },
+  { primary: "Shops", icon: <ShopIcon />, to: "/shops" },
+  { primary: "Mall Map", icon: <MapIcon />, to: "/map" },
+  { primary: "Messages", icon: <ForumIcon />, to: "/messages" },
+  {
+    primary: "Setting",
+    icon: <SettingsIcon />,
+    to: "/setting/personal-information",
+  },
 ];
 
 function ListItemLink(props: ListItemLinkProps) {
@@ -111,7 +115,13 @@ export default function Navs() {
           mt: 1,
         }}
       >
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload();
+          }}
+        >
           <ListItemIcon
             sx={{
               color: "error.main",

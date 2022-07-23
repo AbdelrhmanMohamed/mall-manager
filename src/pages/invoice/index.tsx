@@ -13,7 +13,7 @@ export default function Invoice() {
   const { id } = useParams();
   const navigate = useNavigate();
   const handelBack = () => {
-    navigate("/");
+    navigate(-1);
   };
   return (
     <Paper

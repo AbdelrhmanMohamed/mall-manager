@@ -3,6 +3,11 @@ import { RouteObject } from "react-router-dom";
 import Loadable from "components/Loadable";
 import MainLayout from "layouts/MainLayout";
 import RequireAuth from "./ProtectRouts";
+import PersonalInformation from "components/setting/PersonalInformation";
+import ChangePaswword from "components/setting/ChangePaswword";
+import ShopInfo from "components/setting/ShopInfo";
+import About from "components/setting/About";
+import Theme from "components/setting/Theme";
 
 const Dashboard = Loadable(lazy(() => import("pages/dashboard")));
 const Invoice = Loadable(lazy(() => import("pages/invoice")));
@@ -13,6 +18,11 @@ const FloorDetails = Loadable(
 const MallStructureForm = Loadable(
   lazy(() => import("pages/mallStructure/Form"))
 );
+const Shops = Loadable(lazy(() => import("pages/shops")));
+const ShopStatistics = Loadable(lazy(() => import("pages/shops/statistics")));
+const Map = Loadable(lazy(() => import("pages/map")));
+const Messages = Loadable(lazy(() => import("pages/messages")));
+const Setting = Loadable(lazy(() => import("pages/setting")));
 
 // ==============================|| AUTH ROUTING ||============================== //
 
@@ -59,6 +69,89 @@ const AuthRoutes: RouteObject = {
           <MallStructureForm />
         </RequireAuth>
       ),
+    },
+    {
+      path: "shops",
+      element: (
+        <RequireAuth>
+          <Shops />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "shop-stats/:id",
+      element: (
+        <RequireAuth>
+          <ShopStatistics />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "map",
+      element: (
+        <RequireAuth>
+          <Map />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "messages",
+      element: (
+        <RequireAuth>
+          <Messages />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "setting/",
+      element: (
+        <RequireAuth>
+          <Setting />
+        </RequireAuth>
+      ),
+      children: [
+        {
+          index: true,
+          path: "personal-information",
+          element: (
+            <RequireAuth>
+              <PersonalInformation />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: "change-password",
+          element: (
+            <RequireAuth>
+              <ChangePaswword />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: "shop-info",
+          element: (
+            <RequireAuth>
+              <ShopInfo />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: "theme",
+          element: (
+            <RequireAuth>
+              <Theme />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: "about",
+          element: (
+            <RequireAuth>
+              <About />
+            </RequireAuth>
+          ),
+        },
+      ],
     },
   ],
 };

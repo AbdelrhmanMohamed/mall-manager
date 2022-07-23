@@ -9,6 +9,7 @@ import { styled } from "@mui/material/styles";
 
 interface TableProps extends DataGridProps {
   uniqueKey: string;
+  hideToolbar?: boolean;
 }
 
 export default function MallTable(props: TableProps) {
@@ -16,7 +17,7 @@ export default function MallTable(props: TableProps) {
     <div style={{ flexGrow: 1 }}>
       <StripedDataGrid
         getRowId={(row) => row[props.uniqueKey]}
-        components={{ Toolbar: GridToolbar }}
+        components={{ Toolbar: !props.hideToolbar && GridToolbar }}
         getRowClassName={(params) =>
           params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
         }

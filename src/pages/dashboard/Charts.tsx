@@ -8,9 +8,11 @@ import {
   Tooltip,
   Legend,
   ArcElement,
+  PointElement,
+  LineElement,
 } from "chart.js";
 import { faker } from "@faker-js/faker";
-import { Bar, Doughnut } from "react-chartjs-2";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -19,7 +21,9 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  ArcElement
+  ArcElement,
+  PointElement,
+  LineElement
 );
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -48,6 +52,19 @@ const options_doughnut = {
     },
   },
 };
+const options_line = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top" as const,
+      display: false,
+    },
+    title: {
+      display: true,
+      text: "Revenue Difference",
+    },
+  },
+};
 
 const data_bar = {
   labels,
@@ -71,12 +88,18 @@ const data_doughnut = {
       label: "# of Votes",
       data: [7, 4, 1],
       backgroundColor: ["#0068B3", "#E27E1B", "#0BB300"],
-      // borderColor: [
-      //   "rgba(255, 99, 132, 1)",
-      //   "rgba(54, 162, 235, 1)",
-      //   "rgba(255, 206, 86, 1)",
-      // ],
       borderWidth: 1,
+    },
+  ],
+};
+const data_line = {
+  labels,
+  datasets: [
+    {
+      label: "",
+      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
   ],
 };
@@ -85,4 +108,7 @@ export function BarChart() {
 }
 export function DoughnutChart() {
   return <Doughnut data={data_doughnut} options={options_doughnut} />;
+}
+export function LineChart() {
+  return <Line data={data_line} options={options_line} />;
 }

@@ -9,7 +9,7 @@ export default function Autocomplete(theme) {
         },
         root: {
           ".MuiOutlinedInput-root": {
-            padding: 0,
+            // padding: 0,
           },
         },
       },

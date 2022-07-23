@@ -1,31 +1,28 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 import Loadable from "components/Loadable";
-import MainLayout from "layouts/MainLayout";
-import RequireAuth from "./ProtectRouts";
+import AuthLayout from "layouts/AuthLayout";
+import NotRequireAuth from "./NoAuth";
 import Login from "pages/authentication/Login";
 // import Messages from "pages/messages/Messages";
-
-const Dashboard = Loadable(lazy(() => import("pages/dashboard")));
 
 // ==============================|| AUTH ROUTING ||============================== //
 
 const AuthRoutes: RouteObject[] = [
   {
     path: "/",
-    element: <MainLayout />,
+    element: <AuthLayout />,
     children: [
       {
-        index: true,
+        path: "login",
         element: (
-          <RequireAuth>
-            <Dashboard />
-          </RequireAuth>
+          <NotRequireAuth>
+            <Login />
+          </NotRequireAuth>
         ),
       },
     ],
   },
-  { path: "login", element: <Login /> },
 ];
 
 export default AuthRoutes;

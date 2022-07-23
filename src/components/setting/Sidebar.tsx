@@ -14,41 +14,50 @@ const Sidebar = (props: Props) => {
               Setting
             </Typography>
           </ListItem>
-          <ListItem button sx={{ mt: 2 }}>
-            <Link to="personal-information" style={{ textDecoration: "none", color: "#0068B3" }}>
+          <Link
+            to="personal-information"
+            style={{ textDecoration: "none", color: "#0068B3" }}
+          >
+            <ListItem button sx={{ mt: 2 }}>
               <Typography variant="body1" component="div">
                 Personal Information
               </Typography>
-            </Link>
-          </ListItem>
-          <ListItem button sx={{ mt: 2 }}>
-            <Link to="change-password" style={{ textDecoration: "none", color: "#C0C0C0" }}>
+            </ListItem>
+          </Link>
+          <Link
+            to="change-password"
+            style={{ textDecoration: "none", color: "#C0C0C0" }}
+          >
+            <ListItem button sx={{ mt: 2 }}>
               <Typography variant="body1" component="div">
                 Password
               </Typography>
-            </Link>
-          </ListItem>
-          <ListItem button sx={{ mt: 2 }}>
-            <Link to="shop-info" style={{ textDecoration: "none", color: "#C0C0C0" }}>
+            </ListItem>
+          </Link>
+          <Link
+            to="shop-info"
+            style={{ textDecoration: "none", color: "#C0C0C0" }}
+          >
+            <ListItem button sx={{ mt: 2 }}>
               <Typography variant="body1" component="div">
                 Shop Info
               </Typography>
-            </Link>
-          </ListItem>
-          <ListItem button sx={{ mt: 2 }}>
-            <Link to="theme" style={{ textDecoration: "none", color: "#C0C0C0" }}>
+            </ListItem>
+          </Link>
+          <Link to="theme" style={{ textDecoration: "none", color: "#C0C0C0" }}>
+            <ListItem button sx={{ mt: 2 }}>
               <Typography variant="body1" component="div">
                 Theme
               </Typography>
-            </Link>
-          </ListItem>
-          <ListItem button sx={{ mt: 2 }}>
-            <Link to="about" style={{ textDecoration: "none", color: "#C0C0C0" }}>
+            </ListItem>
+          </Link>
+          <Link to="about" style={{ textDecoration: "none", color: "#C0C0C0" }}>
+            <ListItem button sx={{ mt: 2 }}>
               <Typography variant="body1" component="div">
                 About
               </Typography>
-            </Link>
-          </ListItem>
+            </ListItem>
+          </Link>
         </List>
       </Container>
     </Box>

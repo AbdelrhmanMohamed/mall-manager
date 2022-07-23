@@ -1,5 +1,5 @@
 import React from "react";
-import Filter from "./Filter";
+import Filter from "../../dashboard/Filter";
 import Box from "@mui/material/Box";
 import MallCard from "components/ui/MallCrad";
 import Grid from "@mui/material/Grid";
@@ -9,60 +9,44 @@ import {
   PercentageIcon,
 } from "components/ui/mall-icons";
 import Paper from "@mui/material/Paper";
-import { BarChart, DoughnutChart, LineChart } from "./Charts";
 import Typography from "@mui/material/Typography";
 import MallTable from "components/ui/MallTable";
 import { GridColDef } from "@mui/x-data-grid";
 import { ShopInvoicResponse } from "proto/ts/api_pb";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-export default function Dashboard() {
-  let match = localStorage.getItem("user");
+import { useNavigate, useParams } from "react-router-dom";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import IconButton from "@mui/material/IconButton";
+
+export default function Statistics() {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const handelBack = () => {
+    navigate(-1);
+  };
   const handelRowClick = (id: any) => {
     navigate(`/invoice/${id}`, { replace: true });
   };
-  const columns: GridColDef[] = [
-    { field: getFieldName("invoiceid"), headerName: "Invoice ID", width: 150 },
-    { field: getFieldName("timestamp"), headerName: "Time Stamp", width: 150 },
-    { field: getFieldName("subtotal"), headerName: "Subtotal", width: 150 },
-    { field: getFieldName("services"), headerName: "Services", width: 150 },
-    { field: getFieldName("vat"), headerName: "VAT", width: 150 },
-    {
-      field: getFieldName("grandtotal"),
-      headerName: "Grand Total ",
-      width: 200,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      sortable: false,
-      filterable: false,
-      resizable: false,
-      editable: false,
-      renderCell: (params) => {
-        const onClick = (e) => {
-          navigate(`/invoice/${params.id}`, { replace: true });
-        };
-
-        return (
-          <Button onClick={onClick}>
-            <KeyboardArrowRightIcon
-              sx={{
-                color: (theme) => theme.palette.grey[500],
-              }}
-            />
-          </Button>
-        );
-      },
-    },
-  ];
-
   return (
-    <>
+    <div>
       <Box mb={4}>
         <Filter />
+      </Box>
+      <Box mb={2}>
+        <IconButton onClick={handelBack}>
+          <ArrowBackIosIcon
+            fontSize="small"
+            sx={{
+              color: (theme) => theme.palette.grey[500],
+
+              fontSize: "1.1rem",
+              top: -1,
+              position: "relative",
+            }}
+          />
+        </IconButton>
+        <Typography component="span" variant="h6" fontWeight={"bold"} mx={0.5}>
+          THOMAS Shop Statistics {id}
+        </Typography>
       </Box>
       <Grid container spacing={2} mb={3}>
         <Grid item xs={3}>
@@ -110,23 +94,6 @@ export default function Dashboard() {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={9}>
-          <Paper elevation={2} sx={{ p: 1.5 }}>
-            {match === "mall" ? <LineChart /> : <BarChart />}
-          </Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper sx={{ p: 1.5 }} elevation={2}>
-            <Typography variant="h6" fontWeight={"bold"}>
-              Popular Categories
-              <Box mt={1}>
-                <DoughnutChart />
-              </Box>
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
       <Paper
         sx={{
           height: 600,
@@ -147,18 +114,17 @@ export default function Dashboard() {
           columns={columns}
           uniqueKey="invoiceid"
           onRowDoubleClick={(e) => handelRowClick(e.id)}
-          editMode="row"
         />
       </Paper>
-      <Box mt={12}></Box>
-    </>
+    </div>
   );
 }
+
 const getFieldName = (name: keyof ShopInvoicResponse.AsObject) => {
   let c: keyof ShopInvoicResponse.AsObject = name;
   return c;
 };
-const rows: ShopInvoicResponse.AsObject[] | any[] = [
+const rows: ShopInvoicResponse.AsObject[] = [
   {
     invoiceid: 100001,
     timestamp: "12/1/2022",
@@ -166,7 +132,6 @@ const rows: ShopInvoicResponse.AsObject[] | any[] = [
     services: "Paid",
     vat: 10,
     grandtotal: 500,
-    action: "",
   },
   {
     invoiceid: 100002,
@@ -215,5 +180,17 @@ const rows: ShopInvoicResponse.AsObject[] | any[] = [
     services: "Paid",
     vat: 10,
     grandtotal: 500,
+  },
+];
+
+const columns: GridColDef[] = [
+  { field: getFieldName("invoiceid"), headerName: "Invoice ID" },
+  { field: getFieldName("timestamp"), headerName: "Time Stamp" },
+  { field: getFieldName("subtotal"), headerName: "Subtotal" },
+  { field: getFieldName("services"), headerName: "Services" },
+  { field: getFieldName("vat"), headerName: "VAT" },
+  {
+    field: getFieldName("grandtotal"),
+    headerName: "Grand Total ",
   },
 ];
