@@ -26,10 +26,9 @@ export default function Invoice() {
       elevation={2}
     >
       <Box display="flex" alignItems={"center"} mb={1.5}>
-        <IconButton>
+        <IconButton onClick={handelBack}>
           <ArrowBackIosIcon
             fontSize="small"
-            onClick={handelBack}
             sx={{
               color: (theme) => theme.palette.grey[500],
 

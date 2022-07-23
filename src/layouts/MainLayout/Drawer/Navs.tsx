@@ -1,42 +1,167 @@
 import React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { MallStructureIcon, ShopIcon } from "components/ui/mall-icons";
+import {
+  MallStructureIcon,
+  ShopIcon,
+  LogoutIcon,
+} from "components/ui/mall-icons";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MapIcon from "@mui/icons-material/Map";
 import ForumIcon from "@mui/icons-material/Forum";
 import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+  useLocation,
+} from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import Divider from "@mui/material/Divider";
+import TMGLogo from "assets/TMGLogo.svg";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-interface ILists {
-  name: string;
-  icon: React.ReactNode;
+interface ListItemLinkProps {
+  icon?: React.ReactElement;
+  primary: string;
+  to: string;
 }
 
-const Lists: ILists[] = [
-  { name: "Dashboard", icon: <DashboardIcon /> },
-  { name: "Mall Structure", icon: <MallStructureIcon /> },
-  { name: "Shops", icon: <ShopIcon /> },
-  { name: "Mall Map", icon: <MapIcon /> },
-  { name: "Messages", icon: <ForumIcon /> },
-  { name: "Setting", icon: <SettingsIcon /> },
-  { name: "Logout", icon: <LogoutIcon /> },
+const Lists: ListItemLinkProps[] = [
+  { primary: "Dashboard", icon: <DashboardIcon />, to: "/" },
+  {
+    primary: "Mall Structure",
+    icon: <MallStructureIcon />,
+    to: "/mall-structure",
+  },
+  { primary: "Shops", icon: <ShopIcon />, to: "/2" },
+  { primary: "Mall Map", icon: <MapIcon />, to: "/3" },
+  { primary: "Messages", icon: <ForumIcon />, to: "/4" },
+  { primary: "Setting", icon: <SettingsIcon />, to: "/5" },
 ];
+
+function ListItemLink(props: ListItemLinkProps) {
+  const { icon, primary, to } = props;
+  const location = useLocation();
+  const match = to === location.pathname;
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, "to">>(
+        function Link(itemProps, ref) {
+          return (
+            <RouterLink to={to} ref={ref} {...itemProps} role={undefined} />
+          );
+        }
+      ),
+    [to]
+  );
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        {icon ? (
+          <ListItemIcon
+            sx={{
+              color: match
+                ? "primary.main"
+                : (theme) => theme.palette.grey[500],
+            }}
+          >
+            {icon}
+          </ListItemIcon>
+        ) : null}
+        <ListItemText
+          sx={{
+            color: match ? "primary.main" : (theme) => theme.palette.grey[500],
+            "& .MuiListItemText-primary": {
+              fontWeight: match && "bold",
+              fontSize: "1rem",
+            },
+          }}
+          primary={primary}
+        />
+        {match && <ListStripe></ListStripe>}
+      </ListItem>
+    </li>
+  );
+}
 
 export default function Navs() {
   return (
-    <List>
-      {Lists.map((nav, index) => (
-        <ListItem key={index} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>{nav.icon}</ListItemIcon>
-            <ListItemText primary={nav.name} />
-          </ListItemButton>
+    <>
+      <List
+        sx={{
+          mt: 2,
+        }}
+      >
+        {Lists.map((nav, index) => (
+          <ListItemLink
+            key={index}
+            to={nav.to}
+            primary={nav.primary}
+            icon={nav.icon}
+          />
+        ))}
+      </List>
+      <Divider />
+      <List
+        sx={{
+          mt: 1,
+        }}
+      >
+        <ListItem button>
+          <ListItemIcon
+            sx={{
+              color: "error.main",
+            }}
+          >
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText
+            sx={{
+              color: "error.main",
+              "& .MuiListItemText-primary": {
+                fontSize: "1rem",
+              },
+            }}
+            primary={"Logout"}
+          />
         </ListItem>
-      ))}
-    </List>
+      </List>
+      <Box
+        mt="auto"
+        sx={{
+          position: "absolute",
+          bottom: 33,
+          left: 16,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <img height={60} src={TMGLogo} alt="TMGLogo" />
+        <Typography
+          mt={1.5}
+          variant="subtitle2"
+          fontWeight={"bold"}
+          textAlign="center"
+          color="primary.main"
+        >
+          Talaat Moustafa Group
+          <Typography color="primary.main" variant="body2" fontWeight={"bold"}>
+            future builders
+          </Typography>
+        </Typography>
+      </Box>
+    </>
   );
 }
+
+const ListStripe = styled("span")(({ theme }) => ({
+  width: 3,
+  height: 28,
+  backgroundColor: theme.palette.primary.main,
+  position: "absolute",
+  right: 0,
+}));

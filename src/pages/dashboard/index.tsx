@@ -179,15 +179,14 @@ const rows: ShopInvoicResponse.AsObject[] = [
 ];
 
 const columns: GridColDef[] = [
-  { field: getFieldName("invoiceid"), headerName: "Invoice ID", width: 150 },
-  { field: getFieldName("timestamp"), headerName: "Time Stamp", width: 150 },
-  { field: getFieldName("subtotal"), headerName: "Subtotal", width: 150 },
-  { field: getFieldName("services"), headerName: "Services", width: 150 },
-  { field: getFieldName("vat"), headerName: "VAT", width: 150 },
+  { field: getFieldName("invoiceid"), headerName: "Invoice ID" },
+  { field: getFieldName("timestamp"), headerName: "Time Stamp" },
+  { field: getFieldName("subtotal"), headerName: "Subtotal" },
+  { field: getFieldName("services"), headerName: "Services" },
+  { field: getFieldName("vat"), headerName: "VAT" },
   {
     field: getFieldName("grandtotal"),
     headerName: "Grand Total ",
-    width: 150,
   },
 ];
 

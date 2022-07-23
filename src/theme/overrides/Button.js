@@ -15,16 +15,16 @@ export default function Button(theme) {
         },
         containedInherit: {
           color: theme.palette.grey[800],
-          boxShadow: theme.customShadows.z8,
+          // boxShadow: theme.customShadows.z8,
           "&:hover": {
             backgroundColor: theme.palette.grey[400],
           },
         },
         containedPrimary: {
-          boxShadow: theme.customShadows.primary,
+          // boxShadow: theme.customShadows.primary,
         },
         containedSecondary: {
-          boxShadow: theme.customShadows.secondary,
+          // boxShadow: theme.customShadows.secondary,
         },
         outlinedPrimary: {
           border: `2px solid ${theme.palette.primary.main}`,
