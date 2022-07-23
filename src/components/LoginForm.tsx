@@ -37,10 +37,14 @@ const LoginForm = (props: Props) => {
     if (values.email === "mall" && values.password === "123") {
       localStorage.setItem("user", "mall");
       window.location.reload();
-
+      return;
+    } else if (values.email === "shop" && values.password === "123") {
+      localStorage.setItem("user", "shop");
+      window.location.reload();
       return;
     } else {
       alert("بيانات الدخول غير صحيحة");
+      return;
     }
   };
   return (

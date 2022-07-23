@@ -27,10 +27,10 @@ interface ListItemLinkProps {
   icon?: React.ReactElement;
   primary: string;
   to: string;
+  show?: boolean;
 }
 
 const Lists: ListItemLinkProps[] = [
-  { primary: "Dashboard", icon: <DashboardIcon />, to: "/" },
   {
     primary: "Mall Structure",
     icon: <MallStructureIcon />,
@@ -38,14 +38,19 @@ const Lists: ListItemLinkProps[] = [
   },
   { primary: "Shops", icon: <ShopIcon />, to: "/shops" },
   { primary: "Mall Map", icon: <MapIcon />, to: "/map" },
-  { primary: "Messages", icon: <ForumIcon />, to: "/messages" },
+];
+const fixedList: ListItemLinkProps[] = [
+  { primary: "Messages", icon: <ForumIcon />, to: "/messages", show: true },
   {
     primary: "Setting",
     icon: <SettingsIcon />,
     to: "/setting/personal-information",
+    show: true,
   },
 ];
-
+const dashList: ListItemLinkProps[] = [
+  { primary: "Dashboard", icon: <DashboardIcon />, to: "/" },
+];
 function ListItemLink(props: ListItemLinkProps) {
   const { icon, primary, to } = props;
   const location = useLocation();
@@ -93,6 +98,7 @@ function ListItemLink(props: ListItemLinkProps) {
 }
 
 export default function Navs() {
+  const isMall = localStorage.getItem("user");
   return (
     <>
       <List
@@ -100,7 +106,25 @@ export default function Navs() {
           mt: 2,
         }}
       >
-        {Lists.map((nav, index) => (
+        {dashList.map((nav, index) => (
+          <ListItemLink
+            key={index}
+            to={nav.to}
+            primary={nav.primary}
+            icon={nav.icon}
+          />
+        ))}
+        {isMall === "mall" &&
+          Lists.map((nav, index) => (
+            <ListItemLink
+              key={index}
+              to={nav.to}
+              primary={nav.primary}
+              icon={nav.icon}
+            />
+          ))}
+
+        {fixedList.map((nav, index) => (
           <ListItemLink
             key={index}
             to={nav.to}

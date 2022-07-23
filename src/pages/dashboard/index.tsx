@@ -17,6 +17,7 @@ import { ShopInvoicResponse } from "proto/ts/api_pb";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 export default function Dashboard() {
   let match = localStorage.getItem("user");
   const navigate = useNavigate();
