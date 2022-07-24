@@ -3,11 +3,11 @@ import { RouteObject } from "react-router-dom";
 import Loadable from "components/Loadable";
 import MainLayout from "layouts/MainLayout";
 import RequireAuth from "./ProtectRouts";
-import PersonalInformation from "components/setting/PersonalInformation";
-import ChangePaswword from "components/setting/ChangePaswword";
-import ShopInfo from "components/setting/ShopInfo";
-import About from "components/setting/About";
-import Theme from "components/setting/Theme";
+import PersonalInformation from "pages/setting/PersonalInformation";
+import ChangePaswword from "pages/setting/ChangePaswword";
+import ShopInfo from "pages/setting/ShopInfo";
+import About from "pages/setting/About";
+import Theme from "pages/setting/Theme";
 
 const Dashboard = Loadable(lazy(() => import("pages/dashboard")));
 const Invoice = Loadable(lazy(() => import("pages/invoice")));
