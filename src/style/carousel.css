@@ -4,7 +4,6 @@
     }
 .slick-track{
     height: 100vh;
-
 }
 
 .slick-dots {
@@ -45,3 +44,10 @@
 
 }
 
+@media screen and (max-width: 900px) {
+    .slick-track{
+        max-height: 600px;
+    }
+    
+    
+}

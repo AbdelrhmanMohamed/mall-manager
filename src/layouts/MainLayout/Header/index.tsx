@@ -1,25 +1,24 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Logo from "assets/logo.svg";
+import { Avatar, AppBar ,Box ,Toolbar ,Menu ,MenuItem,Badge ,InputBase ,Typography ,IconButton} from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
+    const theme = useTheme()
+ const isMatches_md = useMediaQuery(theme.breakpoints.down('md'));
+ 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -57,8 +56,9 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+          <Typography>Mall manager -</Typography>
+      </MenuItem>
     </Menu>
   );
 
@@ -113,12 +113,14 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
-
   return (
     <>
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          borderRadius: "0 0 16px 16px",
+        }}
       >
         <Toolbar>
           <IconButton
@@ -134,12 +136,12 @@ export default function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ fontSize: { xs: "13px", sm: "20px" } }}
           >
             Madinaty open air mall
           </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Search>
+          <Box />
+          <Search sx={{ display: { xs: "none", md: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -151,27 +153,31 @@ export default function Header() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
+              onClick={handleMenuClose}
+              sx={{
+                display: "flex",
+                alginItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <Badge badgeContent={4} color="info">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+              <Avatar sx={{ w: 4, h: 4 }} />
 
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
+              <Typography
+                sx={{
+                  color: (theme) => theme.palette.common.white,
+                  ml: 2,
+                  fontSize: "14px",
+                }}
+                variant="body1"
+              >
+                Mall manager - {"Murad adel"}
+              </Typography>
+              <KeyboardArrowDownIcon
+                sx={{ color: (theme) => theme.palette.common.white, ml: 3 }}
+              />
             </IconButton>
           </Box>
+          {isMatches_md ? "" :
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -184,8 +190,12 @@ export default function Header() {
               <MoreIcon />
             </IconButton>
           </Box>
+
+          
+            }
         </Toolbar>
       </AppBar>
+      
       {renderMobileMenu}
       {renderMenu}
     </>

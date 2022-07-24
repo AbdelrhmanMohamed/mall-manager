@@ -11,10 +11,10 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
-import TemporaryDrawer from "components/Messages/Drawer";
+import TemporaryDrawer from "pages/messages/Drawer";
 import SearchIcon from "@mui/icons-material/Search";
-import UserChat from "components/Messages/UserChat";
-import ChatMessages from "components/Messages/ChatMessages";
+import UserChat from "pages/messages/UserChat";
+import ChatMessages from "pages/messages/ChatMessages";
 import {
   Send,
   SentimentSatisfiedRounded,

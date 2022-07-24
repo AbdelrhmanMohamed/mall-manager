@@ -3,9 +3,12 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import Navs from "./Navs";
+
 const drawerWidth = 240;
 
 export default function ClippedDrawer() {
+
+
   return (
     <Drawer
       variant="permanent"
@@ -14,6 +17,7 @@ export default function ClippedDrawer() {
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: "border-box" },
       }}
+      anchor="left"
     >
       <Toolbar />
       <Box sx={{ overflow: "auto" }}>

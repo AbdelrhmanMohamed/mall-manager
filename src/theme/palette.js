@@ -109,7 +109,7 @@ const palette = {
   gradients: GRADIENTS,
   chart: CHART_COLORS,
   divider: GREY[500_24],
-  text: { primary: "#001e3c", secondary: GREY[600], disabled: GREY[500] },
+  text: { primary: "#333", secondary: GREY[600], disabled: GREY[500] },
   background: { paper: "#fff", default: GREY[100], neutral: GREY[200] },
   action: {
     active: GREY[600],
