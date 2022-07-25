@@ -11,8 +11,10 @@ const SelectBoxes = () => {
       }}
       spacing={2}
       mb={2}
+      xs={12}
+      flexWrap="wrap"
     >
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={3}> 
         <Autocomplete
           disablePortal
           options={apiFloorNo}
@@ -35,7 +37,7 @@ const SelectBoxes = () => {
           )}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={3}>
         <Autocomplete
           disablePortal
           options={apiShopName}
@@ -58,7 +60,7 @@ const SelectBoxes = () => {
           )}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={3}>
         <Autocomplete
           disablePortal
           options={apiShopType}
@@ -81,7 +83,7 @@ const SelectBoxes = () => {
           )}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={3}>
         <Autocomplete
           disablePortal
           options={ApiReportingdate}

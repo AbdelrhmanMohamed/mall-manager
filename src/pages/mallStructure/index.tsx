@@ -52,7 +52,7 @@ export default function MallStructure() {
   return (
     <Box>
       <Grid container spacing={2} mb={3}>
-        <Grid item xs={3}>
+      <Grid item md={3} xs={6}>
           <MallCard
             title="Total Areas"
             color="primary.main"
@@ -60,7 +60,7 @@ export default function MallStructure() {
             icon={<Layers sx={{ color: "primary.main" }} />}
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={6}>
           <MallCard
             title="Total Shops"
             color="chart.orange"
@@ -72,7 +72,7 @@ export default function MallStructure() {
             }
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={6}>
           <MallCard
             title="Rented"
             color="chart.green"
@@ -84,7 +84,7 @@ export default function MallStructure() {
             }
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={6}>
           <MallCard
             title="Integrated"
             color="chart.violet"
