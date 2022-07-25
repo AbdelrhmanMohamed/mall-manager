@@ -21,12 +21,7 @@ const MallStructureForm = (props: Props) => {
     navigate(-1);
   };
   return (
-    <Paper
-      sx={{
-        p: 2,
-      }}
-      elevation={3}
-    >
+    <Paper sx={{ boxShadow: { xs: 0, sm: 3 }, p: { xs: 1, sm: 2 } }}>
       <Box
         display="flex"
         alignItems={"center"}
@@ -65,42 +60,62 @@ const MallStructureForm = (props: Props) => {
         Shop Info
       </Typography>
       <Grid container spacing={2} mb={3} px={1}>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Floor No</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Shop ID</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth type={"number"} />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Shop Type</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Area</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
@@ -116,6 +131,7 @@ const MallStructureForm = (props: Props) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          mb: { xs: 3, sm: 2 },
         }}
       >
         <Typography variant="h5" mb={1}>
@@ -126,98 +142,143 @@ const MallStructureForm = (props: Props) => {
           onClick={() => navigate("/messages", { replace: true })}
         >
           <EmailRoundedIcon sx={{ mr: 1 }} />{" "}
-          <Typography variant="subtitle1" fontSize={18}>
+          <Typography variant="h5" sx={{ fontSize: { xs: 14, sm: 18 } }}>
             Send Message
           </Typography>
         </Button>
       </Box>
       <Grid container spacing={2} px={1}>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Renter Name</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Phone</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth type="number" />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Renter ID</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth type="number" />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Area</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Contract Start</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Trade Name</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Contract End</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Email</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth type="email" />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container alignItems="center" spacing={0.5}>
-            <Grid item xs={2.5}>
+        <Grid item xs={12} sm={6}>
+          <Grid
+            container
+            alignItems="center"
+            spacing={0.5}
+            sx={{ justifyContent: { xs: "space-between", sm: "unset" } }}
+          >
+            <Grid item xs={12} sm={2.5}>
               <Typography variant="subtitle1">Password</Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} sm={9.5}>
               <TextField fullWidth type={"password"} />
             </Grid>
           </Grid>

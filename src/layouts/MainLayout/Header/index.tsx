@@ -7,18 +7,35 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Logo from "assets/logo.svg";
-import { Avatar, AppBar ,Box ,Toolbar ,Menu ,MenuItem,Badge ,InputBase ,Typography ,IconButton} from "@mui/material";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import {
+  Avatar,
+  AppBar,
+  Box,
+  Toolbar,
+  Menu,
+  MenuItem,
+  Badge,
+  InputBase,
+  Typography,
+  IconButton,
+} from "@mui/material";
 
-export default function Header() {
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
+
+
+type Props ={
+  toggleDrawer:Function
+}
+export default function Header({toggleDrawer}:Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
-    const theme = useTheme()
- const isMatches_md = useMediaQuery(theme.breakpoints.down('md'));
- 
+  const theme = useTheme();
+  const isMatches_md = useMediaQuery(theme.breakpoints.down("md"));
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -57,7 +74,7 @@ export default function Header() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-          <Typography>Mall manager -</Typography>
+        <Typography>Mall manager -</Typography>
       </MenuItem>
     </Menu>
   );
@@ -120,9 +137,26 @@ export default function Header() {
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
           borderRadius: "0 0 16px 16px",
+          flexDirection: { xs: "row-reverse", md: "column" },
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ width: { xs: "100%", md: "unset" } }}>
+          {isMatches_md ? (
+            <Box sx={{ display: { xs: "block", md: "none" }, mr: "auto" }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-haspopup="true"
+                onClick={toggleDrawer(true)}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Box>
+          ) : (
+            ""
+          )}
+
           <IconButton
             size="large"
             edge="start"
@@ -140,7 +174,8 @@ export default function Header() {
           >
             Madinaty open air mall
           </Typography>
-          <Box />
+          <Box sx={{ flexGrow: {xs:1} , display: { xs: "none", md: "flex" } }} />
+
           <Search sx={{ display: { xs: "none", md: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
@@ -150,7 +185,8 @@ export default function Header() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: {xs:1} , display: { xs: "none", md: "flex" } }} />
+
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               onClick={handleMenuClose}
@@ -177,25 +213,9 @@ export default function Header() {
               />
             </IconButton>
           </Box>
-          {isMatches_md ? "" :
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-
-          
-            }
         </Toolbar>
       </AppBar>
-      
+
       {renderMobileMenu}
       {renderMenu}
     </>

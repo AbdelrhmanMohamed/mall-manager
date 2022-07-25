@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import Box from "@mui/material/Box";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
@@ -7,15 +7,32 @@ import Drawer from "./Drawer";
 import Toolbar from "@mui/material/Toolbar";
 
 export default function MainLayout() {
+  const [open, setOpen] = useState(false);
+   const toggleDrawer =
+  (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift")
+    ) {
+      return;
+    }
+
+    setOpen(open);
+  };
+
+
+
   return (
     <Box
       sx={{
         display: "flex",
       }}
     >
-      <Header />
-      <Drawer />
-      <Box component="main" sx={{ flexGrow: 1, px: 2, py: 4 }}>
+      <Header toggleDrawer={toggleDrawer} />
+      <Drawer toggleDrawer={toggleDrawer} open={open} />
+      <Box component="main" sx={{ flexGrow: 1, px: {xs:0 , sm:2}, py: 4 }}>
         <Toolbar />
         <Outlet />
       </Box>

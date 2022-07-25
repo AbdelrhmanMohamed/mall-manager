@@ -20,8 +20,8 @@ export default function Shops() {
   return (
     <div>
       <SelectBoxes />
-      <Grid container spacing={2} mb={3}>
-        <Grid item xs={3}>
+      <Grid container spacing={2}  flexWrap="wrap">
+        <Grid item lg={3} xs={6} >
           <MallCard
             title="Total Sales"
             color="primary.main"
@@ -29,7 +29,7 @@ export default function Shops() {
             icon={<SalesIcon sx={{ color: "primary.main" }} />}
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item lg={3} xs={6}>
           <MallCard
             title="Refunds"
             color="chart.orange"
@@ -41,7 +41,7 @@ export default function Shops() {
             }
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item lg={3} xs={6}>
           <MallCard
             title="TMG Percentage"
             color="chart.green"
@@ -53,7 +53,7 @@ export default function Shops() {
             }
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item lg={3} xs={6}>
           <MallCard
             title="TMG Amount"
             color="chart.violet"
@@ -66,14 +66,13 @@ export default function Shops() {
           />
         </Grid>
       </Grid>
-
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
+      <Grid container spacing={2} xs={12} sx={{mt:2}}>
+        <Grid item xs={12} lg={8}>
           <Paper elevation={2} sx={{ p: 1.5 }}>
             <LineChart />
           </Paper>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6} lg={4} >
           <Paper
             sx={{
               p: 1,
