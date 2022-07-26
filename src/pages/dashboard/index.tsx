@@ -65,8 +65,8 @@ export default function Dashboard() {
       <Box mb={4}>
         <Filter />
       </Box>
-      <Grid container spacing={2} flexWrap="wrap">
-        <Grid item sm={3} xs={12}>
+      <Grid container spacing={2} mb={4}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="Total Sales"
             color="primary.main"
@@ -74,7 +74,7 @@ export default function Dashboard() {
             icon={<SalesIcon sx={{ color: "primary.main" }} />}
           />
         </Grid>
-        <Grid item sm={3} xs={12}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="Refunds"
             color="chart.orange"
@@ -86,7 +86,7 @@ export default function Dashboard() {
             }
           />
         </Grid>
-        <Grid item sm={3} xs={12}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="TMG Percentage"
             color="chart.green"
@@ -98,7 +98,7 @@ export default function Dashboard() {
             }
           />
         </Grid>
-        <Grid item sm={3} xs={12}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="TMG Amount"
             color="chart.violet"
@@ -112,12 +112,12 @@ export default function Dashboard() {
         </Grid>
       </Grid>
       <Grid container spacing={2} flexWrap="wrap">
-        <Grid item xs={12} sm={9}>
+        <Grid item xs={12} sm={12} md={12} lg={9}>
           <Paper elevation={2} sx={{ p: 1.5 }}>
             {match === "mall" ? <LineChart /> : <BarChart />}
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} md={6} sm={6} lg={3}>
           <Paper sx={{ p: 1.5 }} elevation={2}>
             <Typography variant="h6" fontWeight={"bold"}>
               Popular Categories

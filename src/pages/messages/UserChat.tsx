@@ -1,19 +1,18 @@
 import React from "react";
-import { Box, Divider, Avatar, Typography, Button } from "@mui/material";
+import { Box, Divider, Avatar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const UserChat = (props: Props) => {
-
   const navigate = useNavigate();
 
   const handelRowClick = () => {
     navigate(`/messages/${"1"}`, { replace: true });
   };
-  
+
   return (
-    <Box sx={{cursor:"pointer"}} onClick={()=>handelRowClick()}>
+    <Box sx={{ cursor: "pointer" }} onClick={() => handelRowClick()}>
       <Box sx={{ m: "16px 0" }}>
         <Box
           sx={{

@@ -3,12 +3,6 @@ import { RouteObject } from "react-router-dom";
 import Loadable from "components/Loadable";
 import MainLayout from "layouts/MainLayout";
 import RequireAuth from "./ProtectRouts";
-import Require_Md from "./ProtectMessages";
-import PersonalInformation from "pages/setting/PersonalInformation";
-import ChangePaswword from "pages/setting/ChangePaswword";
-import ShopInfo from "pages/setting/ShopInfo";
-import About from "pages/setting/About";
-import Theme from "pages/setting/Theme";
 
 const Dashboard = Loadable(lazy(() => import("pages/dashboard")));
 const Invoice = Loadable(lazy(() => import("pages/invoice")));
@@ -25,6 +19,15 @@ const Map = Loadable(lazy(() => import("pages/map")));
 const Messages = Loadable(lazy(() => import("pages/messages")));
 const Chat = Loadable(lazy(() => import("pages/messages/Chat")));
 const Setting = Loadable(lazy(() => import("pages/setting")));
+const PersonalInformation = Loadable(
+  lazy(() => import("pages/setting/PersonalInformation"))
+);
+const ChangePaswword = Loadable(
+  lazy(() => import("pages/setting/ChangePaswword"))
+);
+const ShopInfo = Loadable(lazy(() => import("pages/setting/ShopInfo")));
+const About = Loadable(lazy(() => import("pages/setting/About")));
+const Theme = Loadable(lazy(() => import("pages/setting/Theme")));
 
 // ==============================|| AUTH ROUTING ||============================== //
 
@@ -109,9 +112,7 @@ const AuthRoutes: RouteObject = {
       path: "messages/1", // should change to :id
       element: (
         <RequireAuth>
-          <Require_Md>
-            <Chat />
-          </Require_Md>
+          <Chat />
         </RequireAuth>
       ),
     },

@@ -8,9 +8,8 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-type Props = {};
 
-const ChangePaswword = (props: Props) => {
+const ChangePaswword = () => {
   return (
     <Container maxWidth="md">
       <Box component={"form"} sx={{ mt: 3 }}>
@@ -74,7 +73,7 @@ const ChangePaswword = (props: Props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Grid
               container
               alignItems="center"

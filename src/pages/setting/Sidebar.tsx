@@ -3,17 +3,15 @@ import {
   List,
   ListItem,
   Typography,
-  Container,
   Grid,
   FormControl,
   MenuItem,
-  InputLabel,
 } from "@mui/material";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 type Props = {};
 
@@ -25,29 +23,31 @@ const Sidebar = (props: Props) => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setSettingPage(event.target.value as string);
-    navigate(event.target.value as string)
+    navigate(event.target.value as string);
   };
 
   return (
     <>
       {matches ? (
-          <Grid container xs={12}  justifyContent="center" alignItems="center">
-        <Grid item container xs={11} sm={6} >
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item container xs={12}>
             <FormControl fullWidth>
               <Select
                 id="demo-simple-select"
                 value={settingPage}
                 onChange={handleChange}
               >
-                <MenuItem value={'personal-information'}>Personal Information</MenuItem>
+                <MenuItem value={"personal-information"}>
+                  Personal Information
+                </MenuItem>
                 <MenuItem value={"change-password"}>Password</MenuItem>
                 <MenuItem value={"shop-info"}>Shop info</MenuItem>
                 <MenuItem value={"theme"}>Theme</MenuItem>
                 <MenuItem value={"about"}>About</MenuItem>
               </Select>
             </FormControl>
-        </Grid>
           </Grid>
+        </Grid>
       ) : (
         <Box sx={{ backgroundColor: "#E9F4FC", height: "100%" }}>
           <Box>

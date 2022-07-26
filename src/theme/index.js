@@ -13,7 +13,7 @@ import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import palette from "./palette";
-import typography from "./typography";
+// import typography from "./typography";
 import componentsOverride from "./overrides";
 import shadows, { customShadows } from "./shadows";
 
@@ -28,7 +28,7 @@ export default function ThemeProvider({ children }) {
     () => ({
       palette,
       shape: { borderRadius: 4 },
-      typography,
+      // typography,
       shadows,
       customShadows,
     }),

@@ -5,7 +5,8 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-  Typography
+  Typography,
+  Link,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
@@ -50,9 +51,16 @@ const LoginForm = (props: Props) => {
   };
   return (
     <div>
-      <Typography sx={{ color: (theme)=>theme.palette.text.primary , fontSize:"22px" , mb:2 , width:{xs:"100%" , sm:"88%"} }} variant="h3" >
-        Enter Your ID number associated with
-         your account
+      <Typography
+        sx={{
+          color: (theme) => theme.palette.text.primary,
+          fontSize: "22px",
+          mb: 2,
+          width: { xs: "100%", sm: "88%" },
+        }}
+        variant="h3"
+      >
+        Enter Your ID number associated with your account
       </Typography>
       <form onSubmit={(e) => handelSubmit(e)}>
         <TextField
@@ -101,9 +109,9 @@ const LoginForm = (props: Props) => {
             }}
           />
         </FormControl>
-        <a href="#" className="link-style text-right">
+        <Link href="/" component="a">
           Forget Password?
-        </a>{" "}
+        </Link>
         {/*should change to Link component from react-router */}
         <Button
           type="submit"

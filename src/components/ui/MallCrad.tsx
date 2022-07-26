@@ -17,13 +17,30 @@ export default function MallCard({ icon, color, title, amount }: CardProps) {
   return (
     <Card sx={CardStyle}>
       <CardContent>
-        <Box mb={0.5} display="flex" alignItems={"center"} >
+        <Box mb={0.5} display="flex" alignItems={"center"}>
           {icon}
-          <Typography mx={1} component={"span"} variant="h6" color={color} >
+          <Typography
+            mx={1}
+            component={"span"}
+            sx={{
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+            }}
+            variant="h5"
+            color={color}
+          >
             {title}
           </Typography>
         </Box>
-        <Typography mx={0.5} variant="h3" fontWeight={"bold"} sx={{fontSize:{xs:"14px" ,md:"18px"} , marginTop:{xs:"20px", md:0}}}>
+        <Typography
+          mx={0.5}
+          variant="h4"
+          fontWeight={"bold"}
+          sx={{
+            marginTop: { xs: "20px", md: 0 },
+          }}
+        >
           {amount}
         </Typography>
       </CardContent>
@@ -33,5 +50,5 @@ export default function MallCard({ icon, color, title, amount }: CardProps) {
 
 const CardStyle: SxProps<Theme> = {
   boxShadow: (theme) => theme.shadows[3],
-  height:{xs:"120px" , md:"auto"}
+  // height: { xs: "120px", md: "auto" },
 };
