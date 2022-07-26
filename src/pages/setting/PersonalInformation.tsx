@@ -7,6 +7,7 @@ import {
   Divider,
   Typography,
   TextField,
+  Grid,
 } from "@mui/material";
 import { Container } from "@mui/system";
 import { styled } from "@mui/material/styles";
@@ -25,7 +26,7 @@ export const EditTextField = styled(TextField)({
 const PersonalInformation = (props: Props) => {
   return (
     <Box>
-      <Container maxWidth="lg">
+      <Container >
         <Box
           sx={{
             display: "flex",
@@ -43,112 +44,120 @@ const PersonalInformation = (props: Props) => {
           </Button>
         </Box>
         <Box sx={{ mt: 3 }}>
-          <Container>
-            <Box component={"form"}>
-              <Box sx={{ mt: 2, mb: 2 }}>
-                <FormControl
-                  sx={{
-                    maxWidth: "550px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Typography sx={{ mr: 5 }}>Full Name</Typography>
-                  <EditTextField />
-                </FormControl>
-              </Box>
-              <Divider sx={{ m: 0.5 }} />
-              <Box sx={{ mt: 2, mb: 2 }}>
-                <FormControl
-                  sx={{
-                    maxWidth: "550px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Typography sx={{ mr: 5 }}>Jop Title</Typography>
-                  <EditTextField />
-                </FormControl>
-              </Box>
-              <Divider sx={{ m: 0.5 }} />
-              <Box sx={{ mt: 2, mb: 2 }}>
-                <FormControl
-                  sx={{
-                    maxWidth: "550px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Typography sx={{ mr: 5 }}>ID Number </Typography>
-                  <EditTextField />
-                </FormControl>
-              </Box>
-              <Divider sx={{ m: 0.5 }} />
-              <Box sx={{ mt: 2, mb: 2 }}>
-                <FormControl
-                  sx={{
-                    maxWidth: "550px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Typography sx={{ mr: 5 }}> Email </Typography>
-                  <EditTextField />
-                </FormControl>
-              </Box>
-              <Divider sx={{ m: 0.5 }} />
-              <Box sx={{ mt: 2, mb: 2 }}>
-                <FormControl
-                  sx={{
-                    maxWidth: "550px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Typography sx={{ mr: 5 }}> Number </Typography>
-                  <EditTextField />
-                </FormControl>
-              </Box>
-              <Divider sx={{ m: 0.5 }} />
-              <Box sx={{ mt: 2, mb: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    width: "750px",
-                  }}
-                >
-                  <FormControl
-                    sx={{
-                      width: "550px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      flexDirection: "row",
-                    }}
-                  >
-                    <Typography sx={{ mr: 5 }}> Password </Typography>
-                    <EditTextField type="password" />
-                  </FormControl>
-                  <Box sx={{ ml: 4 }}>
-                    <Link to="/setting/change-password">Change password</Link>
-                  </Box>
-                </Box>
-              </Box>
-              <Divider sx={{ m: 0.5 }} />
-            </Box>
-          </Container>
+          <Box component={"form"}>
+          <Grid container spacing={0.5} mb={3} xs={12}>
+          <Grid item xs={12} >
+
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{ justifyContent: { xs: "space-between", sm: "unset" } , mb:2}}
+            >
+              <Grid item xs={12} sm={2}>
+                <Typography variant="subtitle1">Full name</Typography>
+              </Grid>
+              <Grid item xs={12} sm={7.5}>
+                <TextField fullWidth  type={"text"}/>
+              </Grid>
+            </Grid>
+            </Grid>
+
+            <Divider sx={{ m: 0.5 }} />
+            <Grid item xs={12} >
+
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{ justifyContent: { xs: "space-between", sm: "unset" } , mb:2}}
+            >
+              <Grid item xs={12} sm={2}>
+                <Typography variant="subtitle1">Job Title</Typography>
+              </Grid>
+              <Grid item xs={12} sm={7.5}>
+                <TextField fullWidth  type={"text"}/>
+              </Grid>
+            </Grid>
+            </Grid>
+
+            <Divider sx={{ m: 0.5 }} />
+            <Grid item xs={12} >
+
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{ justifyContent: { xs: "space-between", sm: "unset" } , mb:2}}
+            >
+              <Grid item xs={12} sm={2}>
+                <Typography variant="subtitle1">ID Number</Typography>
+              </Grid>
+              <Grid item xs={12} sm={7.5}>
+                <TextField fullWidth  type={"number"}/>
+              </Grid>
+            </Grid>
+            </Grid>
+            
+            <Divider sx={{ m: 0.5 }} />
+            <Grid item xs={12} >
+
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{ justifyContent: { xs: "space-between", sm: "unset" } , mb:2}}
+            >
+              <Grid item xs={12} sm={2}>
+                <Typography variant="subtitle1">Email</Typography>
+              </Grid>
+              <Grid item xs={12} sm={7.5}>
+                <TextField fullWidth  type={"email"}/>
+              </Grid>
+            </Grid>
+            </Grid>
+            <Divider sx={{ m: 0.5 }} />
+            <Grid item xs={12} >
+
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{ justifyContent: { xs: "space-between", sm: "unset" } , mb:2}}
+            >
+              <Grid item xs={12} sm={2}>
+                <Typography variant="subtitle1">Number</Typography>
+              </Grid>
+              <Grid item xs={12} sm={7.5}>
+                <TextField fullWidth  type={"number"}/>
+              </Grid>
+            </Grid>
+            </Grid>
+            <Divider sx={{ m: 0.5 }} />
+            <Grid item xs={12} >
+
+            <Grid
+              container
+              alignItems="center"
+              spacing={1}
+              sx={{ justifyContent: { xs: "space-between", sm: "unset" } , mb:2}}
+            >
+              <Grid item xs={12} sm={2}>
+                <Typography variant="subtitle1">Password</Typography>
+              </Grid>
+              <Grid item xs={12} sm={7.5}>
+                <TextField fullWidth  type={"password"}/>
+              </Grid>
+              <Grid  item xs={12} sm={2.5}>
+                  <Link to="/setting/change-password">Change password</Link>
+                </Grid>
+
+            </Grid>
+            </Grid>
+            </Grid>
+
+            <Divider sx={{ m: 0.5 }} />
+          </Box>
         </Box>
       </Container>
     </Box>

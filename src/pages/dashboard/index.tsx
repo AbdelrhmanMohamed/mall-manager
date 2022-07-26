@@ -62,11 +62,11 @@ export default function Dashboard() {
 
   return (
     <>
-      <Box mb={3}>
+      <Box mb={4}>
         <Filter />
       </Box>
-      <Grid container spacing={2} mb={3} flexWrap="wrap">
-        <Grid item lg={3} xs={6}>
+      <Grid container spacing={2} flexWrap="wrap">
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="Total Sales"
             color="primary.main"
@@ -74,7 +74,7 @@ export default function Dashboard() {
             icon={<SalesIcon sx={{ color: "primary.main" }} />}
           />
         </Grid>
-        <Grid item lg={3} xs={6}>
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="Refunds"
             color="chart.orange"
@@ -86,7 +86,7 @@ export default function Dashboard() {
             }
           />
         </Grid>
-        <Grid item lg={3} xs={6}>
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="TMG Percentage"
             color="chart.green"
@@ -98,7 +98,7 @@ export default function Dashboard() {
             }
           />
         </Grid>
-        <Grid item lg={3} xs={6}>
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="TMG Amount"
             color="chart.violet"

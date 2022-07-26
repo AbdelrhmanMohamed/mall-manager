@@ -7,10 +7,10 @@ type Props = {};
 
 const Setting = (props: Props) => (
   <Grid container lg={12} sx={{ height: "100%" }}>
-    <Grid lg={3} item>
+    <Grid xs={12} md={3} item>
       <Sidebar />
     </Grid>
-    <Grid lg={9} item>
+    <Grid xs={12} md={9} item>
       <Outlet />
     </Grid>
   </Grid>

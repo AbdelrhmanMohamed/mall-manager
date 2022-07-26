@@ -32,7 +32,7 @@ export default function MainLayout() {
     >
       <Header toggleDrawer={toggleDrawer} />
       <Drawer toggleDrawer={toggleDrawer} open={open} />
-      <Box component="main" sx={{ flexGrow: 1, px: {xs:0 , sm:2}, py: 4 }}>
+      <Box component="main" sx={{ flexGrow: 1, px: {xs:1 , lg:2}, py: 4 }}>
         <Toolbar />
         <Outlet />
       </Box>

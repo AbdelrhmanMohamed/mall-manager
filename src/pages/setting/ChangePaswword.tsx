@@ -1,86 +1,97 @@
-import React from 'react'
+import React from "react";
 import {
   Box,
   Button,
-  FormControl,
+  Container,
   Divider,
   Typography,
+  Grid,
+  TextField,
 } from "@mui/material";
-import { Container } from "@mui/system";
-import {EditTextField} from "./PersonalInformation";
-type Props = {}
+type Props = {};
 
 const ChangePaswword = (props: Props) => {
   return (
-    <Box>
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
+      <Box component={"form"} sx={{ mt: 3 }}>
+        <Grid container spacing={0.5} mb={3} xs={12}>
+          <Grid item xs={12}>
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{
+                justifyContent: { xs: "space-between", sm: "unset" },
+                mb: 2,
+              }}
+            >
+              <Grid item xs={12} sm={4}>
+                <Typography variant="subtitle1">Old password</Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <TextField fullWidth type={"text"} />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Divider />
+          <Grid item xs={12}>
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{
+                justifyContent: { xs: "space-between", sm: "unset" },
+                mb: 2,
+              }}
+            >
+              <Grid item xs={12} sm={4}>
+                <Typography variant="subtitle1">New Password</Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <TextField fullWidth type={"password"} />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Divider />
 
-      <Box sx={{ mt: 3 }}>
-        <Container>
-          <Box component={"form"}>
-            <Box sx={{ mt: 2, mb: 2 }}>
-              <FormControl
-                sx={{
-                  maxWidth: "650px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                }}
-              >
-                <Typography sx={{ mr: 5 }}>Old Password</Typography>
-                <EditTextField />
-              </FormControl>
-            </Box>
-            <Divider />
-            <Box sx={{ mt: 2, mb: 2 }}>
-              <FormControl
-                sx={{
-                  maxWidth: "650px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                }}
-              >
-                <Typography sx={{ mr: 5 }}>New Password</Typography>
-                <EditTextField />
-              </FormControl>
-            </Box>
-            <Divider />
-
-            <Box sx={{ mt: 2, mb: 2 }}>
-              <FormControl
-                sx={{
-                  maxWidth: "650px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                }}
-              >
-                <Typography sx={{ mr: 5 }}>Re-Enter New Password</Typography>
-                <EditTextField />
-              </FormControl>
-            </Box>
-
-            <Box sx={{ mt: 4, mb: 2 , ml:"auto" ,maxWidth:"580px"}}>
-              <FormControl
-                sx={{
-                width: "400px",
-                }}
-              >
-                <Button  variant="contained" fullWidth>Change Password</Button>
-              </FormControl>
-            </Box>
-            
-            </Box>
-        </Container>
+          <Grid item xs={12}>
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{
+                justifyContent: { xs: "space-between", sm: "unset" },
+                mb: 2,
+              }}
+            >
+              <Grid item xs={12} sm={4}>
+                <Typography variant="subtitle1">
+                  Re-Enter New Password{" "}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <TextField fullWidth type={"password"} />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} >
+            <Grid
+              container
+              alignItems="center"
+              spacing={0.5}
+              sx={{ justifyContent: { xs: "end" }, mb: 2 }}
+            >
+              <Grid item xs={12} sm={8}>
+                <Button variant="contained" fullWidth size="large">
+                  Change Password
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Box>
     </Container>
-  </Box>
+  );
+};
 
-  )
-}
-
-export default ChangePaswword
+export default ChangePaswword;

@@ -3,6 +3,7 @@ import { RouteObject } from "react-router-dom";
 import Loadable from "components/Loadable";
 import MainLayout from "layouts/MainLayout";
 import RequireAuth from "./ProtectRouts";
+import Require_Md from "./ProtectMessages";
 import PersonalInformation from "pages/setting/PersonalInformation";
 import ChangePaswword from "pages/setting/ChangePaswword";
 import ShopInfo from "pages/setting/ShopInfo";
@@ -22,6 +23,7 @@ const Shops = Loadable(lazy(() => import("pages/shops")));
 const ShopStatistics = Loadable(lazy(() => import("pages/shops/statistics")));
 const Map = Loadable(lazy(() => import("pages/map")));
 const Messages = Loadable(lazy(() => import("pages/messages")));
+const Chat = Loadable(lazy(() => import("pages/messages/Chat")));
 const Setting = Loadable(lazy(() => import("pages/setting")));
 
 // ==============================|| AUTH ROUTING ||============================== //
@@ -99,6 +101,17 @@ const AuthRoutes: RouteObject = {
       element: (
         <RequireAuth>
           <Messages />
+        </RequireAuth>
+      ),
+    },
+
+    {
+      path: "messages/1", // should change to :id
+      element: (
+        <RequireAuth>
+          <Require_Md>
+            <Chat />
+          </Require_Md>
         </RequireAuth>
       ),
     },

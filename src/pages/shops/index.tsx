@@ -21,7 +21,7 @@ export default function Shops() {
     <div>
       <SelectBoxes />
       <Grid container spacing={2}  flexWrap="wrap">
-        <Grid item lg={3} xs={6} >
+        <Grid item sm={3} xs={12} >
           <MallCard
             title="Total Sales"
             color="primary.main"
@@ -29,7 +29,7 @@ export default function Shops() {
             icon={<SalesIcon sx={{ color: "primary.main" }} />}
           />
         </Grid>
-        <Grid item lg={3} xs={6}>
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="Refunds"
             color="chart.orange"
@@ -41,7 +41,7 @@ export default function Shops() {
             }
           />
         </Grid>
-        <Grid item lg={3} xs={6}>
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="TMG Percentage"
             color="chart.green"
@@ -53,7 +53,7 @@ export default function Shops() {
             }
           />
         </Grid>
-        <Grid item lg={3} xs={6}>
+        <Grid item sm={3} xs={12}>
           <MallCard
             title="TMG Amount"
             color="chart.violet"
