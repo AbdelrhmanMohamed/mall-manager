@@ -18,9 +18,6 @@ export default function PersistentDrawerRight(props: Props) {
   const { open, setOpen } = props;
   const theme = useTheme();
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -31,10 +28,9 @@ export default function PersistentDrawerRight(props: Props) {
       <CssBaseline />
       <Drawer
         sx={{
-          width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: {xs:"100%" , lg:"30%"},
             marginTop: "74px",
             backgroundColor:"#E9F4FC"
           },

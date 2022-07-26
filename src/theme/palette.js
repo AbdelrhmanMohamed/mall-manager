@@ -111,6 +111,7 @@ const palette = {
   divider: GREY[500_24],
   text: { primary: "#333", secondary: GREY[600], disabled: GREY[500] },
   background: { paper: "#fff", default: GREY[100], neutral: GREY[200] },
+  messages:"#E9F4FC",
   action: {
     active: GREY[600],
     hover: GREY[500_8],

@@ -1,11 +1,19 @@
 import React from "react";
-import { Box, Divider, Avatar, Typography } from "@mui/material";
+import { Box, Divider, Avatar, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const UserChat = (props: Props) => {
+
+  const navigate = useNavigate();
+
+  const handelRowClick = () => {
+    navigate(`/messages/${"1"}`, { replace: true });
+  };
+  
   return (
-    <>
+    <Box sx={{cursor:"pointer"}} onClick={()=>handelRowClick()}>
       <Box sx={{ m: "16px 0" }}>
         <Box
           sx={{
@@ -15,17 +23,22 @@ const UserChat = (props: Props) => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Box sx={{ mr: 2 }}>
+            <Box sx={{ mr: { xs: 2, md: 1, lg: 2 } }}>
               <Avatar />
             </Box>
             <Box>
-              <Typography variant="h5" fontSize="20px">
+              <Typography
+                variant="h5"
+                sx={{ fontSize: { xs: "1rem", lg: "20px" } }}
+              >
                 Ahmed Adel
               </Typography>
               <Typography
                 variant="body1"
-                fontSize={"14px"}
-                sx={{ color: "#A9A9A9" }}
+                sx={{
+                  color: "#A9A9A9",
+                  fontSize: { xs: "14px", md: "0.8rem" },
+                }}
               >
                 Have your own question
               </Typography>
@@ -33,15 +46,14 @@ const UserChat = (props: Props) => {
           </Box>
           <Typography
             variant="body1"
-            fontSize={"14px"}
-            sx={{ color: "#A9A9A9" }}
+            sx={{ color: "#A9A9A9", fontSize: { xs: "14px", md: "0.8rem" } }}
           >
             22/5/22
           </Typography>
         </Box>
       </Box>
       <Divider />
-    </>
+    </Box>
   );
 };
 
