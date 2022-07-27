@@ -1,14 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import {Drawer ,Box ,CssBaseline ,IconButton , Container ,Avatar , Typography}  from "@mui/material";
-import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { Clear, Download } from "@mui/icons-material";
 
-const drawerWidth = "30%";
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
 
 type Props = {
   open: boolean;
@@ -16,7 +10,6 @@ type Props = {
 };
 export default function PersistentDrawerRight(props: Props) {
   const { open, setOpen } = props;
-  const theme = useTheme();
 
 
   const handleDrawerClose = () => {

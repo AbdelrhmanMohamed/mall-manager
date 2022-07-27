@@ -22,14 +22,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
-
-    setOpen:Function
+  setOpen: Function;
 };
 
-const Chat = ({setOpen}: Props) => {
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.down("md"));
-    const navigate = useNavigate();
+const Chat = ({ setOpen }: Props) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -49,19 +48,18 @@ const Chat = ({setOpen}: Props) => {
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                    {
-                        matches ? (
-                            <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="start"
-                            onClick={()=>navigate("/messages")}
-                          >
-                            <KeyboardArrowLeft sx={{fontSize:30}}/>
-                          </IconButton>
-          
-                        ):""
-                    }
+                  {matches ? (
+                    <IconButton
+                      color="inherit"
+                      aria-label="open drawer"
+                      edge="start"
+                      onClick={() => navigate("/messages")}
+                    >
+                      <KeyboardArrowLeft sx={{ fontSize: 30 }} />
+                    </IconButton>
+                  ) : (
+                    ""
+                  )}
                   <Box sx={{ mr: 2 }}>
                     <Avatar />
                   </Box>
@@ -116,7 +114,6 @@ const Chat = ({setOpen}: Props) => {
                 lg: "46vw",
                 xl: "45vw",
               },
-                    
             }}
           >
             <Box

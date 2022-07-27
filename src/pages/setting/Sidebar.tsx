@@ -3,26 +3,73 @@ import {
   List,
   ListItem,
   Typography,
-  Container,
   Grid,
   FormControl,
   MenuItem,
-  InputLabel,
 } from "@mui/material";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+  useLocation,
+  
+} from "react-router-dom";
+import ListItemText from "@mui/material/ListItemText";
+
 
 type Props = {};
+interface ListItemLinkProps {
+  primary: string;
+  to: string;
+  show?: boolean;
+}
+
+function ListItemLink(props: ListItemLinkProps) {
+  const {  primary, to } = props;
+  const location = useLocation();
+  const match = `/setting/${to}` === location.pathname;
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, "to">>(
+        function Link(itemProps, ref) {
+          return (
+            <RouterLink to={to} ref={ref} {...itemProps} role={undefined} />
+          );
+        }
+      ),
+    [to]
+  );
+console.log(to);
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        
+        <ListItemText
+          sx={{
+            color: match ? "primary.main" : (theme) => theme.palette.grey[500],
+            "& .MuiListItemText-primary": {
+              fontWeight: match && "bold",
+              fontSize: "1rem",
+            },
+          }}
+          primary={primary}
+        />
+      </ListItem>
+    </li>
+  );
+}
 
 const Sidebar = (props: Props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const [settingPage, setSettingPage] = React.useState("personal-information");
-
+  
   const handleChange = (event: SelectChangeEvent) => {
     setSettingPage(event.target.value as string);
     navigate(event.target.value as string)
@@ -61,56 +108,26 @@ const Sidebar = (props: Props) => {
                   Setting
                 </Typography>
               </ListItem>
-              <Link
-                to="personal-information"
-                style={{ textDecoration: "none", color: "#0068B3" }}
-              >
-                <ListItem button sx={{ mt: 2 }}>
-                  <Typography variant="body1" component="div">
-                    Personal Information
-                  </Typography>
-                </ListItem>
-              </Link>
-              <Link
-                to="change-password"
-                style={{ textDecoration: "none", color: "#C0C0C0" }}
-              >
-                <ListItem button sx={{ mt: 2 }}>
-                  <Typography variant="body1" component="div">
-                    Password
-                  </Typography>
-                </ListItem>
-              </Link>
-              <Link
-                to="shop-info"
-                style={{ textDecoration: "none", color: "#C0C0C0" }}
-              >
-                <ListItem button sx={{ mt: 2 }}>
-                  <Typography variant="body1" component="div">
-                    Shop Info
-                  </Typography>
-                </ListItem>
-              </Link>
-              <Link
-                to="theme"
-                style={{ textDecoration: "none", color: "#C0C0C0" }}
-              >
-                <ListItem button sx={{ mt: 2 }}>
-                  <Typography variant="body1" component="div">
-                    Theme
-                  </Typography>
-                </ListItem>
-              </Link>
-              <Link
-                to="about"
-                style={{ textDecoration: "none", color: "#C0C0C0" }}
-              >
-                <ListItem button sx={{ mt: 2 }}>
-                  <Typography variant="body1" component="div">
-                    About
-                  </Typography>
-                </ListItem>
-              </Link>
+              <ListItemLink
+              to={"personal-information"}
+              primary={"Personal Information"}
+            />
+              <ListItemLink
+              to={"change-password"}
+              primary={"Password"}
+            />
+              <ListItemLink
+              to={"shop-info"}
+              primary={"Shop Info"}
+            />
+              <ListItemLink
+              to={"theme"}
+              primary={"Theme"}
+            />
+              <ListItemLink
+              to={"about"}
+              primary={"About"}
+            />
             </List>
           </Box>
         </Box>
