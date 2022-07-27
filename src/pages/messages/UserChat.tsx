@@ -5,15 +5,14 @@ import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const UserChat = (props: Props) => {
-
   const navigate = useNavigate();
 
   const handelRowClick = () => {
     navigate(`/messages/${"1"}`, { replace: true });
   };
-  
+
   return (
-    <Box sx={{cursor:"pointer"}} onClick={()=>handelRowClick()}>
+    <Box sx={{ cursor: "pointer" }} onClick={() => handelRowClick()}>
       <Box sx={{ m: "16px 0" }}>
         <Box
           sx={{

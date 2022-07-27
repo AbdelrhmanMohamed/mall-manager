@@ -5,41 +5,47 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-  Typography
+  Typography,
+  Link,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  userName: string;
+  passwordRequired: string;
+};
 
 type Props = {};
 interface State {
-  email: string;
-  password: string;
   showPassword: boolean;
 }
 
 const LoginForm = (props: Props) => {
   const [values, setValues] = useState<State>({
-    email: "",
-    password: "",
     showPassword: false,
   });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: {
+      userName: "",
+      passwordRequired: "",
+    },
+    mode: "onChange",
+  });
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    console.log(values);
-    if (values.email === "mall" && values.password === "123") {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (data.userName === "mall" && data.passwordRequired === "123") {
       localStorage.setItem("user", "mall");
       window.location.reload();
       return;
-    } else if (values.email === "shop" && values.password === "123") {
+    } else if (data.userName === "shop" && data.passwordRequired === "123") {
       localStorage.setItem("user", "shop");
       window.location.reload();
       return;
@@ -48,13 +54,27 @@ const LoginForm = (props: Props) => {
       return;
     }
   };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
   return (
     <div>
-      <Typography sx={{ color: (theme)=>theme.palette.text.primary , fontSize:"22px" , mb:2 , width:{xs:"100%" , sm:"88%"} }} variant="h3" >
-        Enter Your ID number associated with
-         your account
+      <Typography
+        sx={{
+          color: (theme) => theme.palette.text.primary,
+          fontSize: "22px",
+          mb: 2,
+          width: { xs: "100%", sm: "88%" },
+        }}
+        variant="h3"
+      >
+        Enter Your ID number associated with your account
       </Typography>
-      <form onSubmit={(e) => handelSubmit(e)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           id="outlined-basic"
           label="User Name or Email"
@@ -62,24 +82,30 @@ const LoginForm = (props: Props) => {
           fullWidth
           margin="dense"
           style={{ marginTop: 25, marginBottom: 15 }}
-          onChange={(e) => {
-            setValues({
-              ...values,
-              email: e.target.value,
-            });
-          }}
+          {...register("userName", { required: true })}
+          error={errors.userName && true}
+          name="userName"
+          helperText={errors.userName && "This field is required"}
+
         />
+
         <FormControl
           sx={{ mt: 1, mb: 2, width: "100%" }}
           variant="outlined"
           margin="dense"
         >
-          <InputLabel htmlFor="outlined-adornment-password">
+          <InputLabel
+            htmlFor="outlined-adornment-password"
+            error={errors.passwordRequired && true}
+          >
             Password
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? "text" : "password"}
+            {...register("passwordRequired", { required: true })}
+            error={errors.passwordRequired && true}
+            name="passwordRequired"
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -93,17 +119,12 @@ const LoginForm = (props: Props) => {
               </InputAdornment>
             }
             label="Password"
-            onChange={(e) => {
-              setValues({
-                ...values,
-                password: e.target.value,
-              });
-            }}
           />
+        {errors.passwordRequired && <Typography sx={{fontSize:"12px" , m:"3px 14px 0 14px" ,color:"error.main" }} >This field is required</Typography>}
         </FormControl>
-        <a href="#" className="link-style text-right">
+        <Link href="/" component="a">
           Forget Password?
-        </a>{" "}
+        </Link>
         {/*should change to Link component from react-router */}
         <Button
           type="submit"

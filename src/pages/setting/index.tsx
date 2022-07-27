@@ -3,9 +3,7 @@ import Sidebar from "pages/setting/Sidebar";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-type Props = {};
-
-const Setting = (props: Props) => (
+const Setting = () => (
   <Grid container lg={12} sx={{ height: "100%" }}>
     <Grid xs={12} md={3} item>
       <Sidebar />

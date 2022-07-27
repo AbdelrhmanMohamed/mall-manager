@@ -1,16 +1,10 @@
 import React from "react";
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Slider from "react-slick";
-import "../../../node_modules/slick-carousel/slick/slick.css"; 
+import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
-import "../../style/carousel.css"
+import "../../style/carousel.css";
 const LoginCarousel = () => {
-
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
-
   var settings = {
     dots: true,
     infinite: true,
@@ -23,19 +17,16 @@ const LoginCarousel = () => {
     dotsClass: "slick-dots ",
   };
 
-
   return (
-    <Slider
-    {...settings}
-    >
+    <Slider {...settings}>
       <div className="carousel-image">
-        <img src="/images/1.jpg"    />
+        <img src="/images/1.jpg" alt="img" />
       </div>
       <div className="carousel-image">
-        <img src="/images/2.jpg"    />
+        <img src="/images/2.jpg" alt="img" />
       </div>
       <div className="carousel-image">
-        <img src="/images/3.jpg"    />
+        <img src="/images/3.jpg" alt="img" />
       </div>
     </Slider>
   );

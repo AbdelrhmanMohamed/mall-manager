@@ -32,6 +32,7 @@ export default function ConfirmModel(props: Props) {
     >
       <IconButton
         aria-label="close"
+        
         sx={{
           position: "absolute",
           right: 12,

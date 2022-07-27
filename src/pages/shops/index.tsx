@@ -1,5 +1,5 @@
 import React from "react";
-import SelectBoxes from "./SelectBoxes";
+import SelectBoxes from "./Filters";
 import { Grid, Paper } from "@mui/material";
 import MallCard from "components/ui/MallCrad";
 import MallTable from "components/ui/MallTable";
@@ -18,10 +18,10 @@ export default function Shops() {
     navigate(`/shop-stats/${id}`, { replace: true });
   };
   return (
-    <div>
+    <>
       <SelectBoxes />
-      <Grid container spacing={2}  flexWrap="wrap">
-        <Grid item sm={3} xs={12} >
+      <Grid container spacing={2} flexWrap="wrap">
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="Total Sales"
             color="primary.main"
@@ -29,7 +29,7 @@ export default function Shops() {
             icon={<SalesIcon sx={{ color: "primary.main" }} />}
           />
         </Grid>
-        <Grid item sm={3} xs={12}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="Refunds"
             color="chart.orange"
@@ -41,7 +41,7 @@ export default function Shops() {
             }
           />
         </Grid>
-        <Grid item sm={3} xs={12}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="TMG Percentage"
             color="chart.green"
@@ -53,7 +53,7 @@ export default function Shops() {
             }
           />
         </Grid>
-        <Grid item sm={3} xs={12}>
+        <Grid item lg={3} sm={6} xs={12}>
           <MallCard
             title="TMG Amount"
             color="chart.violet"
@@ -66,13 +66,13 @@ export default function Shops() {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2} xs={12} sx={{mt:2}}>
-        <Grid item xs={12} lg={8}>
+      <Grid container spacing={2} xs={12} sx={{ mt: 2 }}>
+        <Grid item xs={12} md={8} lg={8}>
           <Paper elevation={2} sx={{ p: 1.5 }}>
             <LineChart />
           </Paper>
         </Grid>
-        <Grid item xs={6} lg={4} >
+        <Grid item xs={12} md={4} lg={4}>
           <Paper
             sx={{
               p: 1,
@@ -94,7 +94,7 @@ export default function Shops() {
           </Paper>
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 }
 

@@ -2,19 +2,8 @@ import { Grid, Autocomplete, TextField } from "@mui/material";
 
 const SelectBoxes = () => {
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-      spacing={2}
-      mb={2}
-      xs={12}
-      flexWrap="wrap"
-    >
-      <Grid item xs={12} sm={3}> 
+    <Grid container spacing={2} mb={2} flexWrap="wrap">
+      <Grid item lg={3} sm={6} xs={12}>
         <Autocomplete
           disablePortal
           options={apiFloorNo}
@@ -22,6 +11,7 @@ const SelectBoxes = () => {
             width: "100%",
             "& .MuiOutlinedInput-root": { backgroundColor: "#fff" },
           }}
+          fullWidth
           renderInput={(params) => (
             <TextField
               {...params}
@@ -37,7 +27,7 @@ const SelectBoxes = () => {
           )}
         />
       </Grid>
-      <Grid item xs={12} sm={3}>
+      <Grid item lg={3} sm={6} xs={12}>
         <Autocomplete
           disablePortal
           options={apiShopName}
@@ -60,7 +50,7 @@ const SelectBoxes = () => {
           )}
         />
       </Grid>
-      <Grid item xs={12} sm={3}>
+      <Grid item lg={3} sm={6} xs={12}>
         <Autocomplete
           disablePortal
           options={apiShopType}
@@ -83,7 +73,7 @@ const SelectBoxes = () => {
           )}
         />
       </Grid>
-      <Grid item xs={12} sm={3}>
+      <Grid item lg={3} sm={6} xs={12}>
         <Autocomplete
           disablePortal
           options={ApiReportingdate}

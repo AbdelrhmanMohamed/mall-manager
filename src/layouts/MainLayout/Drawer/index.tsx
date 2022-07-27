@@ -6,33 +6,33 @@ import Navs from "./Navs";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import Button from "@mui/material/Button";
 
-const drawerWidth = 240;
+export const drawerWidth = 240;
 
-type Props ={
-  toggleDrawer:Function,
-   open:boolean,
-}
-export default function ClippedDrawer({open , toggleDrawer }:Props) {
+type Props = {
+  toggleDrawer: Function;
+  open: boolean;
+};
+export default function ClippedDrawer({ open, toggleDrawer }: Props) {
   const theme = useTheme();
   const isMatches_md = useMediaQuery(theme.breakpoints.down("md"));
- 
 
   return (
     <>
       {isMatches_md ? (
         <>
           <SwipeableDrawer
-            anchor={"left"}
+            anchor={"right"}
             open={open}
             onClose={toggleDrawer(false)}
             onOpen={toggleDrawer(true)}
-            sx={{zIndex:10000 ,
+            sx={{
+              zIndex: 10000,
+              flexShrink: 0,
               [`& .MuiDrawer-paper`]: {
                 width: drawerWidth,
+                left: 0,
               },
-  
             }}
           >
             <Navs />
