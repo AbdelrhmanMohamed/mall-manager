@@ -3,14 +3,14 @@ package POSPck;
 
 service POS {
   rpc SignIn(LoginRequest) returns (LoginResponse) {}
-  rpc ForgetPass(ForgetRequest) returns (ForgetResponse) {}
+//   rpc ForgetPass(ForgetRequest) returns (ForgetResponse) {}
   rpc GetUserProfile(EmptyMessage) returns (GetUserProfileResponse) {}
   rpc GetShopById(ShopRequest) returns (ShopResponse) {}
   rpc GetDashboardCounts(DashboardCountsRequest) returns (DashboardCountsResponse) {}
   rpc GetShopSalesStatistics(StatsRequest) returns (StatsWithDescResponse) {} 
   rpc GetMallRevenueDifference(StatsRequest) returns (StatsWithDescResponse) {} 
   rpc GetShopInvoices(ShopInvoicesRequest) returns (ShopInvoicResponse) {} 
-  rpc GetTransactionsOfInvoice(TransactionsOfInvoiceRequest) returns (TransactionsOfInvoiceRespone) {} 
+//   rpc GetTransactionsOfInvoice(TransactionsOfInvoiceRequest) returns (TransactionsOfInvoiceRespone) {} 
   rpc GetMallStructure(EmptyMessage) returns (MallStructureResponse) {} 
   rpc GetAllShops(AllShopsRequest) returns (AllShopsResponse) {} 
   rpc AddShop(Shop) returns (MessageResponse) {} 
@@ -61,8 +61,8 @@ message ShopResponse {
     required int64 ShopName = 1;
     required int64 ShopID = 2;  
     optional int64 ShopArea = 3;  
-    optional int64 ShopType = 4;  
-    optional float TmgPercentage = 5;  
+    optional int64 ShopStatus = 4;  
+   // optional float TmgPercentage = 5;  
     optional string ContractStart = 6;  
     optional string ContractEnd = 7;  
 }
@@ -87,8 +87,8 @@ message DashboardCountsResponse {
     optional double Refunds = 2;
     optional float TMGPercentage = 3;
     optional double TMGAmount = 4;
-    repeated StatsWithDescResponse PopularCategories   = 5;
-    repeated StatsWithDescResponse CustomerTraffic = 6;
+    //repeated StatsWithDescResponse PopularCategories   = 5;
+    //repeated StatsWithDescResponse CustomerTraffic = 6;
 }
 message StatsWithDescResponse {
     repeated StatsResponse Stats = 1;

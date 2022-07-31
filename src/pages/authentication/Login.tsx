@@ -3,6 +3,7 @@ import { Button, Grid, styled } from "@mui/material";
 import { Container } from "@mui/system";
 import LoginForm from "./LoginForm";
 import Carousel from "./Carousel";
+import { POS_API } from "api";
 // import { POS_API } from "api";
 
 const LanguageButton = styled(Button)({
@@ -11,29 +12,34 @@ const LanguageButton = styled(Button)({
 });
 
 function Login() {
-  // async function getMostFollowedUsers() {
-  //   const response = await POS_API.post("/SignIn", {
-  //     username: "alir",
-  //     email: "string",
-  //     password: "P@ssw0rd",
-  //   });
-  //   console.log(response, "res");
-  //   return response.data;
-  // }
+  async function getMostFollowedUsers() {
+    const response = await POS_API.post("/SignIn", {
+      username: "alir",
+      email: "string",
+      password: "P@ssw0rd",
+    });
+    console.log(response, "res");
+    return response.data;
+  }
   useEffect(() => {
-    // getMostFollowedUsers();
-    fetch("https://frontapi.itdeg.net/api/FrontEnd/SignIn", {
+    fetch("api/FrontEnd/GetShopInvoices", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json charset=UTF-8",
       },
       body: JSON.stringify({
-        username: "alir",
-        email: "string",
-        password: "P@ssw0rd",
+        shopID: 3,
+        startDate: "2022-05-27T20:19:22.100Z",
+        endDate: "2022-07-27T20:19:22.100Z",
       }),
-    });
+    })
+      .then((a) => {
+        return a.json();
+      })
+      .then((e) => {
+        console.log(e);
+      });
   }, []);
   return (
     <Grid container flexWrap={"wrap"} sx={{ overflowX: "hidden" }}>
